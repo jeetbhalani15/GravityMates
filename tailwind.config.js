@@ -10,9 +10,7 @@ module.exports = {
       'lg': '1024px',
     },
     extend: {
-      width: {
-        'w-45': '44.9%'
-      },
+      
     },
   },
   plugins: [],

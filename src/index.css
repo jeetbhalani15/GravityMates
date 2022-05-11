@@ -15,14 +15,15 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   /* background: #6bbab4; */
-  background: #d9cdc7;  
+  background: #c7bcb1; 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   /* background: #46706d; */
-  background: #c7bcb1;
+  background: #ddc9be; 
+ 
 }
 @tailwind base;
 @tailwind components;

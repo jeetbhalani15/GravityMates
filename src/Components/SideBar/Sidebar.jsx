@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 function Sidebar() {
   return (
     <>
-    <div className="flex items-center justify-around gap-3 w-full p-2 fixed bottom-0 bg-white lg:absolute lg:left-44 lg:top-8 lg:mb-12 z-20 lg:flex-col lg:w-60 lg:h-fit lg:items-start lg:p-8 lg:bg-zinc-200  lg:rounded-tl-3xl lg:pb-60">
+    <div className="flex items-center justify-around gap-3 w-full p-2 fixed bottom-0 bg-white lg:absolute lg:left-44 lg:top-8 lg:mb-12 z-20 lg:flex-col lg:w-60 lg:h-fit lg:items-start lg:p-8 lg:bg-zinc-200  lg:rounded-tl-3xl lg:pb-[17.8rem]">
          <Link to={"/"}><div className=' hidden lg:block text-2xl   lg:text-sky-900 ml-8 font-extrabold  font-mono'>
            Gravity
          <div className='lg:ml-16 text-xs'>Mates</div>
