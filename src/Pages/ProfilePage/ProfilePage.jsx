@@ -16,16 +16,16 @@ function ProfilePage() {
        {false && <PostModal/>}
 
         {/* BODY_SECTION POST CARD  */}
-        <div className="mt-20 lg:mt-6 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.7rem]">
-            <div className='lg:p-8'>
-         <div className='flex gap-3 items-center justify-center mt-4'>
+        <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.7rem]">
+            <div className='lg:p-8 mt-[-3rem]'>
+         <div className='flex gap-3 lg:gap-6 items-center justify-center mt-4'>
              <div className='w-20 lg:w-28 '>
                  <img className='rounded-full' src={logo} alt="logo"/>
              </div>
              <div className='flex gap-4 flex-col p-2'>
-                 <div className='flex gap-4'>
-                     <div className='font-bold '>Yodha</div>
-                     <div><button className=' p-1 rounded-md bg-slate-300 text-sm'>Edit profile</button></div>
+                 <div className='flex items-center gap-4'>
+                     <div className='font-bold lg:text-xl lg:pr-2 '>Yodha</div>
+                     <div><button className=' p-1 rounded-md bg-slate-400 text-sm lg:p-2'>Edit profile</button></div>
                      <div><AiOutlineLogout size={20} /></div>
                  </div>
                  <div>
@@ -40,7 +40,7 @@ function ProfilePage() {
          </div>
          <div className='mt-2'><p className=' text-center'>Badminton | Web Developer</p></div>
          </div>
-         <div className='lg:overflow-y-auto lg:h-[29rem]'>
+         <div className='lg:overflow-y-auto lg:h-[31.5rem]'>
             <Card/>
             <Card/>
             <Card/>

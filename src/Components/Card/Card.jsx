@@ -8,7 +8,7 @@ import logo from "../../Assets/Images/logo.png"
 
 function Card() {
   return (
-    <div className="justify-center p-0.5 max-w-xl lg:ml-12">
+    <div className="justify-center p-0.5 max-w-xl lg:ml-24">
     <div className="w-8 flex items-center gap-1 p-1">
          <img className='rounded-full' src={logo} alt="logo" srcset="" />
          yodha
