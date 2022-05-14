@@ -21,7 +21,7 @@ function Login() {
     navigate("/")
   }
 
-  const loginHandler = (e)=>{
+  const loginHandler = (e,userData)=>{
     e.preventDefault();
     dispatch(fetchLoginUserData(userData))
     navigate("/")
@@ -30,7 +30,7 @@ function Login() {
  <div className="h-screen flex justify-center bg-zinc-200 ">
           <div className="flex lg:w-1/2 justify-center items-center space-y-8">
             <div className="w-[85%]  px-8 md:px-32 lg:px-24">
-            <form onSubmit={(e)=>loginHandler(e)} className="bg-white rounded-md shadow-2xl p-5">
+            <form onSubmit={(e)=>loginHandler(e,userData)} className="bg-white rounded-md shadow-2xl p-5">
               <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
               <p className="text-sm font-normal text-gray-600 mb-8">Login to gravity account</p>
 

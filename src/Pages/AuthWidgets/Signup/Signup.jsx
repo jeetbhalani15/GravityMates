@@ -7,7 +7,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { fetchSignupUserData } from '../../../features/Auth/authSlice'
 
 function Signup() {
-  const [userData, setUserData] = useState({firstname: "", lastname: "", username: "", password: ""});
+  const [userData, setUserData] = useState({username: "", password: "", firstName: "", lastName: "", email: ""} );
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const navigate = useNavigate();
@@ -28,24 +28,29 @@ function Signup() {
         <div className='lg:flex lg:items-center lg:gap-3'>
         <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
         <FaRegUser size={15} color="grey"/>
-          <input onChange={(e)=> setUserData((pre)=>({...pre, firstname: e.target.value}))} value={userData.firstname} id="firstname" className=" pl-2 w-full outline-none border-none" type="text" name="firstname" placeholder="First name" />
+          <input onChange={(e)=> setUserData((pre)=>({...pre, firstName: e.target.value}))} value={userData.firstname} id="firstname" className=" pl-2 w-full outline-none border-none" type="text" name="firstname" placeholder="First name" required />
         </div>
 
         <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
         <FaRegUser size={15} color="grey"/>
-          <input onChange={(e)=> setUserData((pre)=>({...pre, lastname: e.target.value}))} value={userData.lastname} id="lastname" className=" pl-2 w-full outline-none border-none" type="text" name="lastname" placeholder="Last name" />
+          <input onChange={(e)=> setUserData((pre)=>({...pre, lastName: e.target.value}))} value={userData.lastname} id="lastname" className=" pl-2 w-full outline-none border-none" type="text" name="lastname" placeholder="Last name" required />
         </div>
         </div>
 
         <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
         <FaRegUser size={15} color="grey"/>
-          <input onChange={(e)=>  setUserData((pre)=>({...pre, username: e.target.value}))} value={userData.username} id="username" className=" pl-2 w-full outline-none border-none" type="text" name="username" placeholder="Username" />
+          <input onChange={(e)=>  setUserData((pre)=>({...pre, username: e.target.value}))} value={userData.username} id="username" className=" pl-2 w-full outline-none border-none" type="text" name="username" placeholder="Username" required />
+        </div>
+
+        <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
+        <FaRegUser size={15} color="grey"/>
+          <input onChange={(e)=>  setUserData((pre)=>({...pre, email: e.target.value}))} value={userData.email} id="username" className=" pl-2 w-full outline-none border-none" type="text" name="username" placeholder="email" required />
         </div>
 
 
         <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
         <HiLockClosed size={16} color="grey"/>
-          <input onChange={(e)=>  setUserData((pre)=>({...pre, password: e.target.value}))} value={userData.password} className="pl-2 w-full outline-none border-none" type="password" name="password" id="password" placeholder="Password" />
+          <input onChange={(e)=>  setUserData((pre)=>({...pre, password: e.target.value}))} value={userData.password} className="pl-2 w-full outline-none border-none" type="password" name="password" id="password" placeholder="Password" required />
         </div>
 
 

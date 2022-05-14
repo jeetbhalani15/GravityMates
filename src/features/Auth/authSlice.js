@@ -1,65 +1,76 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+1
 const initialState = {
-    token: "",
-    error: '',
+    token : JSON.parse(localStorage.getItem(("user")))?.token || '',
+    user : JSON.parse(localStorage.getItem(("user")))?.user || '',
+    error : ''
 }
 
-export const fetchSignupUserData = createAsyncThunk('user/fetchSignupUserData',async(userData)=>{
+
+
+export const fetchLoginUserData = createAsyncThunk('user/fetchLoginUserData', async (userData) => {
+    console.log("in")
+    console.log(userData)
+    console.log("in")
+    console.log("in")
+    const response = await axios.post("/api/auth/login", userData)
+    console.log(response)
     try {
-        const res = await axios.post("/api/auth/signup",userData)
-        if(res.status === 200){
-            localStorage.setItem("token", res.data.encodedtoken)
-            localStorage.setItem("user",JSON.stringify(res.data.createUser))
-            return res.data
+        if(response.status === 200){
+            return response.data;
         }
-    } catch (error) {
-        return error
+    } catch (error){
+        console.log(error);
     }
+
 })
 
-export const fetchLoginUserData = createAsyncThunk('user/fetchLoginUserData',async(userData)=>{
-    console.log("hello")
-    const res = await axios.post("/api/auth/login",userData)
-    console.log(res)
+export const fetchSignupUserData = createAsyncThunk('user/fetchSignupUserData', async (userData) => {
+    const response = await axios.post("/api/auth/signup", userData)
     try {
-        if(res.status === 200){
-            localStorage.setItem("token", res.data.encodedtoken)
-            localStorage.setItem("user",JSON.stringify(res.data.foundUser))
-            return res.data
+        if(response.status === 201){ 
+            return response.data;
         }
-        console.log(res.data)
-    } catch (error) {
-        return error
+    } catch (error){
+        return error;
     }
-})
 
+})
 
 const authSlice = createSlice({
-    name: 'user',
+    name : 'user',
     initialState,
-    extraReducers: (builder)=>{
-        builder.addCase(fetchSignupUserData.pending, state =>{
+
+    extraReducers : (builder) => {
+        builder.addCase(fetchLoginUserData.pending, state => {
             state.token = ''
         })
-        builder.addCase(fetchSignupUserData.fulfilled, (state,action) =>{
-            state.token = action.payload.encodedtoken
+
+        builder.addCase(fetchLoginUserData.fulfilled, (state, action) => {
+            state.token = action.payload.encodedToken
+            localStorage.setItem("user", JSON.stringify({token: action.payload.encocdedToken, user:action.payload.foundUser}))
         })
-        builder.addCase(fetchSignupUserData.rejected, (state,action) =>{
+
+        builder.addCase(fetchLoginUserData.rejected, (state, action) => {
             state.error = action.payload
         })
-        builder.addCase(fetchLoginUserData.pending, state =>{
+
+        builder.addCase(fetchSignupUserData.pending, state => {
             state.token = ''
         })
-        builder.addCase(fetchLoginUserData.fulfilled, (state,action) =>{
-            state.token = action.payload.encodedtoken
+
+        builder.addCase(fetchSignupUserData.fulfilled, (state, action) => {
+            state.token = action.payload.encodedToken
+            localStorage.setItem("user", JSON.stringify({token: action.payload.encocdedToken, user:action.payload.createdUser}))
         })
-        builder.addCase(fetchLoginUserData.rejected, (state,action) =>{
+
+        builder.addCase(fetchSignupUserData.rejected, (state, action) => {
             state.error = action.payload
         })
-    } 
+    }
+}
+)
 
-})
-
-export default authSlice.reducer;
+export default authSlice.reducer; 
