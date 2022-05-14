@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {FaRegUser} from "react-icons/fa"
 import {HiLockClosed} from "react-icons/hi"
+import {MdOutlineAlternateEmail} from "react-icons/md"
 import { useState } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { fetchSignupUserData } from '../../../features/Auth/authSlice'
@@ -43,13 +44,13 @@ function Signup() {
         </div>
 
         <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
-        <FaRegUser size={15} color="grey"/>
-          <input onChange={(e)=>  setUserData((pre)=>({...pre, email: e.target.value}))} value={userData.email} id="username" className=" pl-2 w-full outline-none border-none" type="text" name="username" placeholder="email" required />
+        <MdOutlineAlternateEmail size={18} color="grey"/>
+          <input onChange={(e)=>  setUserData((pre)=>({...pre, email: e.target.value}))} value={userData.email} id="username" className=" pl-2 w-full outline-none border-none" type="text" name="username" placeholder="Email address" required />
         </div>
 
 
         <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
-        <HiLockClosed size={16} color="grey"/>
+        <HiLockClosed size={18} color="grey"/>
           <input onChange={(e)=>  setUserData((pre)=>({...pre, password: e.target.value}))} value={userData.password} className="pl-2 w-full outline-none border-none" type="password" name="password" id="password" placeholder="Password" required />
         </div>
 
