@@ -12,8 +12,8 @@ function Login() {
   const navigate = useNavigate();
 
   const guestData = {
-    username: "adarshbalika",
-    password: "adarshBalika123",
+    username: "yodhabalka",
+    password: "yodhaBalka123",
   }
 
   const guestLoginHandler = ()=>{
