@@ -16,7 +16,7 @@ function Signup() {
   const signupHandler = (e)=>{
     e.preventDefault();
     dispatch(fetchSignupUserData(userData));
-    navigate("/")
+    navigate("/home")
   }
   return (
     <div className="h-screen flex justify-center bg-zinc-200 ">

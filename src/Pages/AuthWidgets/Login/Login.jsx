@@ -18,13 +18,13 @@ function Login() {
 
   const guestLoginHandler = ()=>{
     dispatch(fetchLoginUserData(guestData))
-    navigate("/")
+    navigate("/home")
   }
 
   const loginHandler = (e,userData)=>{
     e.preventDefault();
     dispatch(fetchLoginUserData(userData))
-    navigate("/")
+    navigate("/home")
   }
   return (
  <div className="h-screen flex justify-center bg-zinc-200 ">

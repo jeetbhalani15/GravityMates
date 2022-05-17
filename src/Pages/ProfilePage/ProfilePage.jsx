@@ -51,7 +51,7 @@ function ProfilePage() {
             <div className='lg:p-8 mt-[-3rem]'>
          <div className='flex gap-3 lg:gap-6 items-center justify-center mt-4'>
              <div className='w-20 lg:w-28 '>
-                 <img className='rounded-[50%]' src={userImage} alt="logo"/>
+                 <img className='block mx-auto bg-center bg-no-repeat bg-cover w-24 h-24 rounded-full border  shadow-lg' src={currentUser?.img} alt="logo"/>
              </div>
              <div className='flex gap-4 flex-col p-2'>
                  <div className='flex items-center gap-4'>

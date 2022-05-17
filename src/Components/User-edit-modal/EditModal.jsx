@@ -27,14 +27,13 @@ const EditModal = ({setShow, userImage, setUserImage}) => {
   }
 
   const imageUploadhandler =(e)=>{
-    let render = new FileReader()
+    let reader = new FileReader()
    
-    render.readAsDataURL(e.target.files[0])
+    reader.readAsDataURL(e.target.files[0])
 
-    render.onload = () =>{
-      if(render.readyState ===2)
-      console.log(render.result)
-      setUserImage(render.result)
+    reader.onload = () =>{
+      if(reader.readyState ===2)
+      setUserData(pre => ({...pre, img : reader.result}));
     }
   }
 
@@ -49,7 +48,7 @@ const EditModal = ({setShow, userImage, setUserImage}) => {
      <div className='flex flex-col justify-center items-center gap-6'>
      <div className='w-20 lg:w-18 '>
        <label>
-       <img className='rounded-full' src={userImage} alt="logo"/>
+       <img className=' w-20 h-20 rounded-full' src={userData.img} alt="logo"/>
        <input  onChange={(e) => imageUploadhandler(e)} accept="image/*" type="file" />
        </label>
              

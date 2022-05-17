@@ -15,6 +15,7 @@ export const users = [
     email: "guest@gmail.com",
     bio: "badminton | Web Developer",
     website: "https//google.com",
+    img: "https://i.imgur.com/2MVjicu.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
