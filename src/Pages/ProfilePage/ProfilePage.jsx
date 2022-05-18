@@ -7,8 +7,9 @@ import Card from '../../Components/Card/Card'
 import Header from '../../Components/Header/Header'
 import Sidebar from '../../Components/SideBar/Sidebar'
 import SuggestionCard from '../../Components/SuggestionCard/SuggestionCard'
-import EditModal from '../../Components/User-edit-modal/EditModal'
+
 import PostModal from '../../Components/User-post-modal/PostModal'
+import EditProfileModal from '../../Components/User-profileEdit-modal/editProfileModal'
 import { fetchAllUsersData, logoutUser } from '../../features/Auth/authSlice'
 
 function ProfilePage() {
@@ -44,7 +45,7 @@ function ProfilePage() {
       <>    <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem]">
         {/* // HEADER_SECTION */}
         <Header />
-       {show && <EditModal setShow={setShow} userImage={userImage} setUserImage={setUserImage} />}
+       {show && <EditProfileModal setShow={setShow} userImage={userImage} setUserImage={setUserImage} />}
 
         {/* BODY_SECTION POST CARD  */}
         <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem]">

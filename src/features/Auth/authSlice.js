@@ -154,3 +154,4 @@ const authSlice = createSlice({
 
 export default authSlice.reducer; 
 export const {logoutUser} = authSlice.actions;
+export const useAuth = ()=> useSelector(state=>state.user)

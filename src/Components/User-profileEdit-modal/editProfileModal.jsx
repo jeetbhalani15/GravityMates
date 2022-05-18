@@ -7,7 +7,7 @@ import logo from "../../Assets/Images/logo.png"
 import { editUser } from '../../features/Auth/authSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
-const EditModal = ({setShow, userImage, setUserImage}) => {
+const EditProfileModal = ({setShow, userImage, setUserImage}) => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.users)
   const authUserData = useSelector(state => state.user)
@@ -80,4 +80,4 @@ const EditModal = ({setShow, userImage, setUserImage}) => {
   )
 }
 
-export default EditModal
+export default EditProfileModal

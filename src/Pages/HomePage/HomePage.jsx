@@ -6,9 +6,9 @@ import Card from "../../Components/Card/Card";
 import Sidebar from "../../Components/SideBar/Sidebar";
 import PostModal from "../../Components/User-post-modal/PostModal";
 import SuggestionCard from "../../Components/SuggestionCard/SuggestionCard";
-import EditModal from "../../Components/User-edit-modal/EditModal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsersData } from "../../features/Auth/authSlice";
+import { getPost, usePosts } from "../../features/Posts/postSlice";
 
 
 
@@ -16,10 +16,14 @@ function HomePage() {
   const [show,setShow] = useState(false)
   const dispatch = useDispatch();
   const userData = useSelector(state => state.user)
+  const {posts} = usePosts();
+  // const posts = useSelector(state=> state.post);
 
   useEffect(()=>{
     dispatch(fetchAllUsersData())
+    dispatch(getPost());
   },[])
+
   return (
     <>
       <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem]">
@@ -42,11 +46,8 @@ function HomePage() {
             </div>
           
           </div>
-          <div className=" lg:overflow-y-auto lg:h-[37.8rem]">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+          <div className=" flex flex-col gap-6 lg:overflow-y-auto lg:h-[37.8rem]">
+            {posts?.map((items)=> <Card key={items._id} postData={items}/>)}
           </div>
         </div>
 
