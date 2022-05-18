@@ -50,6 +50,7 @@ const EditPostModal = ({setShowEditModal,postsData,setPostsData,postId}) => {
       <div className='flex items-start gap-6'>
       <div className='w-20 lg:w-22 '>
                <img className='rounded-full' src={userData.user?.img} alt="logo"/>
+               <img className='w-24 mt-8 rounded-[5px]' src={postsData?.img} alt=""/>
            </div>
            <div className='flex flex-col items-center gap-4'>
              <input className='p-1' type="text" maxLength="100" onChange={(e)=>postDatahandler(e)} value={postData?.caption} name="caption" placeholder='caption...' required />

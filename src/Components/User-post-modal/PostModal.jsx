@@ -16,6 +16,11 @@ function PostModal({setShow}) {
   const [postContent, setPostContent] = useState("")
   const [postImage, setPostImage] = useState("")
   const [caption, setcaption] = useState("")
+  const postData = {
+    content: postContent,
+    caption : caption,
+    img : postImage,
+  }
 
  const handleContentChange=(e)=>{
   setPostContent(e.target.value)
@@ -36,13 +41,6 @@ const handlePostImage = (e)=>{
   e.preventDefault();
   // const {firstName,lastName} = users;
   // console.log(firstName)
-  const postData = {
-    // firstName,
-    // lastName,
-    content: postContent,
-    caption : caption,
-    img : postImage,
-  }
   dispatch(addPost({postData,token}))
   dispatch(getPost())
   setShow(false)
@@ -58,20 +56,22 @@ const handlePostImage = (e)=>{
         <div className='flex items-start gap-6'>
         <div className='w-20 lg:w-22 '>
                  <img className='rounded-full' src={userData.user?.img} alt="logo"/>
+             <img className='w-24 mt-8 rounded-[5px]' src={postImage} alt=""/>
              </div>
+                 
              <div className='flex flex-col items-center gap-4'>
                <input className='p-1' type="text" maxLength="100" onChange={(e)=>setcaption(e.target.value)} placeholder='caption...' required />
                <textarea className=" w-full p-1" maxLength="120" type="text" rows={8} placeholder='whats happening ?'
                value={postContent} onChange={((e)=>handleContentChange(e))} required/>
              </div>
         </div>
-        
         <div className="flex gap-2">
           <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400' htmlFor='image'><BiImageAdd/>Add Image
           <input type='file' accept="image/*" id="image" onChange={handlePostImage}  className=" invisible w-0 p-0 "/>
           </label>
           <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
         </div>
+          
       </div>
       </form>
        </div>
