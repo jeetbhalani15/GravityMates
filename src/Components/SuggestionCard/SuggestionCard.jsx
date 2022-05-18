@@ -4,8 +4,10 @@ import {AiOutlineLogout} from "react-icons/ai"
 import logo from "../../Assets/Images/logo.png"
 import SuggestedCard from '../SuggestedCard/SuggestedCard'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function SuggestionCard() {
+  const userData = useSelector(state=> state.user);
   return (
     <div className=" hidden xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl ">
     <div className="lg:flex lg:items-center lg:justify-end lg:gap-2 lg:p-4 hover:cursor-pointer">
@@ -17,7 +19,7 @@ function SuggestionCard() {
       </div>
       <Link to={"/login"}><img
         className="lg:rounded-full lg:ml-2 lg:w-10"
-        src={logo}
+        src={userData.user?.img}
         alt="logo"
         srcset=""
       /></Link>

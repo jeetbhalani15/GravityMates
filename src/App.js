@@ -10,8 +10,9 @@ import Signup from "./Pages/AuthWidgets/Signup/Signup";
 function App() {
   return (
     <Routes>
-      <Route exact path="/" element={<HomePage/>} />
-      <Route  path="/profile" element={<ProfilePage/>} />
+      <Route exact path="/" element={<Login/>} />
+      <Route  path="/home" element={<HomePage/>} />
+      <Route  path="/profile/:username" element={<ProfilePage/>} />
       <Route  path="/login" element={<Login/>} />
       <Route  path="/signup" element={<Signup/>} />
     </Routes>

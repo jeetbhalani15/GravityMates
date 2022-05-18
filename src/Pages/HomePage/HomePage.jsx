@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {ImSearch} from "react-icons/im"
 import {VscDiffAdded} from "react-icons/vsc"
 import Header from "../../Components/Header/Header";
@@ -7,11 +7,19 @@ import Sidebar from "../../Components/SideBar/Sidebar";
 import PostModal from "../../Components/User-post-modal/PostModal";
 import SuggestionCard from "../../Components/SuggestionCard/SuggestionCard";
 import EditModal from "../../Components/User-edit-modal/EditModal";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllUsersData } from "../../features/Auth/authSlice";
 
 
 
 function HomePage() {
   const [show,setShow] = useState(false)
+  const dispatch = useDispatch();
+  const userData = useSelector(state => state.user)
+
+  useEffect(()=>{
+    dispatch(fetchAllUsersData())
+  },[])
   return (
     <>
       <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem]">
@@ -27,7 +35,7 @@ function HomePage() {
               <ImSearch className="w-8 mr-2" />
             </div>
             <div className=" flex items-center gap-3 hover:cursor-pointer lg:text-lg lg:text-sky-900 lg:font-bold">
-              Hi,Yodha
+              {`Hi,${userData.user?.username}`}
               <div>
               <VscDiffAdded onClick={()=> setShow(true)} color="black" size={20}/>
             </div>
