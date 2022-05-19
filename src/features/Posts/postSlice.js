@@ -66,6 +66,40 @@ export const editPost = createAsyncThunk(
       }
     }
   ); 
+export const getPostById = createAsyncThunk(
+    "post/getPostById",
+    async ({postId}) => {
+        console.log("helllo")
+        console.log(postData)
+      try {
+        const res = await axios.get(`/api/posts/${postId}`)
+        return res.data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  ); 
+
+//COMMENTS   
+export const addCommentOnPost = createAsyncThunk(
+    "post/addCommentOnPost",
+    async ({postId, commentData, token}) => {
+        console.log("comment")
+        console.log(token)
+        console.log(postId)
+        console.log(commentData)
+      try {
+        const {data: {comments}} = await axios.post(`/api/comments/add/${postId}`, {commentData} , {headers:{
+            authorization: token,
+          }});
+
+          console.log(comments)
+        return {comments, postId}
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  ); 
  
 const postSlice = createSlice({
     name: 'post',
@@ -92,11 +126,24 @@ const postSlice = createSlice({
         })
         builder.addCase(addPost.fulfilled, (state,action) => {
             state.isLoading = false;
-            state.action = action.payload?.posts.reverse();
+            state.posts = action.payload?.posts.reverse();
         })
         builder.addCase(addPost.rejected, (state) => {
             state.isLoading = false;
             state.errorMessage = "could not add the post"
+        })
+
+        // GET POST BY ID
+        builder.addCase(getPostById.pending, (state) => {
+            state.isLoading = false;
+        })
+        builder.addCase(getPostById.fulfilled, (state,action) => {
+            state.isLoading = false;
+            state.posts = action.payload;
+        })
+        builder.addCase(getPostById.rejected, (state) => {
+            state.isLoading = false;
+            state.errorMessage="could not fetch post"
         })
 
         // DELETE POST
@@ -105,7 +152,7 @@ const postSlice = createSlice({
         })
         builder.addCase(deletePost.fulfilled, (state,action) => {
             state.isLoading = true;
-            state.action = action.payload.posts;
+            state.posts = action.payload.posts;
         })
         builder.addCase(deletePost.rejected, (state,action) => {
             state.isLoading = true;
@@ -123,6 +170,20 @@ const postSlice = createSlice({
         builder.addCase(editPost.rejected, (state) => {
             state.isLoading = false;
             state.errorMessage = "could not add the post"
+        })
+
+        // ADD COMMENT 
+        builder.addCase(addCommentOnPost.pending, (state) => {
+            state.isLoading = true;
+        })
+        builder.addCase(addCommentOnPost.fulfilled, (state,action) => {
+            state.isLoading = false;
+            const postIndex = state.posts.findIndex((post)=>post._id === action.payload.postId);
+            state.posts[postIndex].comments = action.payload?.comments;
+        })
+        builder.addCase(addCommentOnPost.rejected, (state) => {
+            state.isLoading = false;
+            state.errorMessage = "could not add post"
         })
 
     }

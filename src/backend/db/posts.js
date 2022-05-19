@@ -17,6 +17,26 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     username: "yodhabalka_77",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -32,6 +52,26 @@ export const posts = [
         likedBy: [],
         dislikedBy: [],
     },
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     username: "yodhabalka_77",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -46,6 +86,26 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     username: "yodhabalka_77",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -61,6 +121,26 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    comments: [
+      {
+        _id: uuid(),
+        username: "shubhamsoni",
+        text: "Interesting",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+      {
+        _id: uuid(),
+        username: "sohamshah",
+        text: "Wow!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
     username: "shubmsoni_34",
     createdAt: formatDate(),
     updatedAt: formatDate(),

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {  editPost, getPost, usePosts,  } from '../../features/Posts/postSlice'
 import { useAuth } from '../../features/Auth/authSlice'
 
-const EditPostModal = ({setShowEditModal,postsData,setPostsData,postId}) => {
+const EditPostModal = ({setShowEditModal,postsData,setPostsData,setShowMenu, postId}) => {
     const userData = useSelector(state=>state.user);
     const [show, setShow] = useState(false)
     const dispatch = useDispatch();
@@ -31,19 +31,20 @@ const EditPostModal = ({setShowEditModal,postsData,setPostsData,postId}) => {
     };
   }
   
-   const handleNewPostSubmit = (e)=>{
+   const handleNewEditedPostSubmit = (e)=>{
     e.preventDefault();
     // const {firstName,lastName} = users;
     // console.log(firstName)
     const postData = postsData
     dispatch(editPost({postData,token,postId}))
     dispatch(getPost())
-    setShow(false)
+    setShowEditModal(false)
+    setShowMenu(false)
   
    }
   return (
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute left-0 top-0">
-    <form onSubmit={handleNewPostSubmit}>
+    <form onSubmit={handleNewEditedPostSubmit}>
      <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96">
       <h1 className=" text-xl text-sky-900 font-bold mt-2 ">New Post</h1>
       <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShowEditModal(false)} size={25}/></span>

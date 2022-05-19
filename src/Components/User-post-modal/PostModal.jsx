@@ -42,7 +42,6 @@ const handlePostImage = (e)=>{
   // const {firstName,lastName} = users;
   // console.log(firstName)
   dispatch(addPost({postData,token}))
-  dispatch(getPost())
   setShow(false)
 
  }
