@@ -100,6 +100,41 @@ export const addCommentOnPost = createAsyncThunk(
       }
     }
   ); 
+
+  export const fetchEditComment = createAsyncThunk("post/fetchEditComment", async ({token, postId, commentId, commentData}) => {
+    try {
+      console.log(token)
+      console.log(postId)
+      console.log(commentId)
+      console.log(commentData)
+        const {data : { comments }} = await axios.post(`/api/comments/edit/${postId}/${commentId}`,{commentData},
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+        return { comments, postId };
+
+    } catch (error) {
+        return error;
+    }
+})
+  export const deleteComment = createAsyncThunk("post/deleteComment", async ({token, postId, commentId}) => {
+    try {
+        const {data : { comments }} = await axios.post(`/api/comments/delete/${postId}/${commentId}`,{},
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+        return { comments, postId };
+
+    } catch (error) {
+        return error;
+    }
+})
  
 const postSlice = createSlice({
     name: 'post',
@@ -120,6 +155,7 @@ const postSlice = createSlice({
             state.errorMessage = "could not feth posts!"
         })
 
+
         // ADD POST
         builder.addCase(addPost.pending, (state) => {
             state.isLoading = true;
@@ -132,6 +168,7 @@ const postSlice = createSlice({
             state.isLoading = false;
             state.errorMessage = "could not add the post"
         })
+
 
         // GET POST BY ID
         builder.addCase(getPostById.pending, (state) => {
@@ -146,6 +183,7 @@ const postSlice = createSlice({
             state.errorMessage="could not fetch post"
         })
 
+
         // DELETE POST
         builder.addCase(deletePost.pending, (state) => {
             state.isLoading = true;
@@ -158,6 +196,7 @@ const postSlice = createSlice({
             state.isLoading = true;
             state.deleteError = "could not delete post !";
         })
+
 
         // EDIT POST
         builder.addCase(editPost.pending, (state) => {
@@ -172,6 +211,7 @@ const postSlice = createSlice({
             state.errorMessage = "could not add the post"
         })
 
+
         // ADD COMMENT 
         builder.addCase(addCommentOnPost.pending, (state) => {
             state.isLoading = true;
@@ -184,6 +224,38 @@ const postSlice = createSlice({
         builder.addCase(addCommentOnPost.rejected, (state) => {
             state.isLoading = false;
             state.errorMessage = "could not add post"
+        })
+
+
+        // edit comments
+        builder.addCase(fetchEditComment.pending, (state, action) => {
+          state.isLoading = true
+        })
+
+        builder.addCase(fetchEditComment.fulfilled, (state,action) => {
+          state.isLoading= false;
+          const postIndex = state.posts.findIndex((post) => post._id === action.payload.postId);
+          state.posts[postIndex].comments = action.payload?.comments;
+        })
+
+        builder.addCase(fetchEditComment.rejected, (state, action) => {
+            state.isLoading = false;
+            state.errorMessage = "could not add post"
+        })
+
+
+          // delete comments
+          builder.addCase(deleteComment .pending, (state, action) => {
+            state.isLoading=true
+        })
+
+        builder.addCase(deleteComment.fulfilled, (state,action) => {
+            const postIndex = state.posts.findIndex(post => post._id === action.payload.postId);
+            state.posts[postIndex].comments = action.payload.comments;
+        })
+
+        builder.addCase(deleteComment.rejected, (state, action) => {
+            state.error = action.payload
         })
 
     }

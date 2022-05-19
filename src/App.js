@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import Login from "./Pages/AuthWidgets/Login/Login";
 import Signup from "./Pages/AuthWidgets/Signup/Signup";
+import SingleCommentPage from "./Pages/SingleCommentPage/SingleCommentPage";
 
 
 
@@ -13,6 +14,7 @@ function App() {
       <Route exact path="/" element={<Login/>} />
       <Route  path="/home" element={<HomePage/>} />
       <Route  path="/profile/:username" element={<ProfilePage/>} />
+      <Route  path="/comments/:postsId" element={<SingleCommentPage/>} />
       <Route  path="/login" element={<Login/>} />
       <Route  path="/signup" element={<Signup/>} />
     </Routes>

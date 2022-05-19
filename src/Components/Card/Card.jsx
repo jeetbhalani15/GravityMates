@@ -16,6 +16,7 @@ import {
 } from "../../features/Posts/postSlice";
 import EditPostModal from "../user-postEdit-modal/editPostModal";
 import CommentCard from "../CommentCard/CommentCard";
+import {Link} from "react-router-dom";
 
 function Card({ postData }) {
   const [show, setShowComments] = useState(false);
@@ -30,8 +31,9 @@ function Card({ postData }) {
   const { posts } = usePosts();
   const dispatch = useDispatch();
   const [commentData, setComment] = useState({ text: "" });
-  const postId = postData._id;
-  console.log(posts);
+  const postId = postData?._id;
+  console.log(postData.id);
+
   const deletePostHandler = () => {
     dispatch(deletePost({ postId: postData?._id, token }));
     dispatch(getPost());
@@ -100,9 +102,13 @@ function Card({ postData }) {
               <div>
                 <FiHeart size={20} />
               </div>
-              <div onClick={() => setShowComments(!show)}>
+              {/* <div onClick={() => setShowComments(!show)}>
+                <FiMessageCircle size={20} />
+              </div> */}
+              <Link to={`/comments/${postData?.id}`}><div onClick={() => setShowComments(!show)}>
                 <FiMessageCircle size={20} />
               </div>
+              </Link>
               <div>
                 <FiSend size={20} />
               </div>
@@ -119,16 +125,17 @@ function Card({ postData }) {
         </div>
 
         {/* { posts?.comments.map(items => <CommentCard items={items} /> )  }        */}
-        {posts.map((item) =>
-          item.comments.map(
+        {/* {posts.map((item) =>
+          (item.comments.map(
             (comment) =>
-               ((item?.username === postData?.username) &&
+               (
                 <CommentCard key={comment.id} commentData={comment} />
               )
-          )
-        )}
+          ))
+        )} */}
 
-        {show && (
+
+        {false && (
           <div className=" p-2 flex items-center gap-2 w-[28rem] ">
             <img className="w-8 rounded-full" src={logo} alt="logo" />
             <input
