@@ -131,6 +131,39 @@ export const addCommentOnPost = createAsyncThunk(
         return error;
     }
 })
+
+export const fetchLikePost = createAsyncThunk("post/fetchLikePost", async ({token, postId}) => {
+  try {
+      const response = await  axios.post(`/api/posts/like/${postId}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+      return response.data;
+
+  } catch (error) {
+      console.log(error);
+  }
+});
+export const fetchDisLikePost = createAsyncThunk("post/fetchDisLikePost", async ({token, postId}) => {
+  try {
+      const response = await  axios.post(`/api/posts/dislike/${postId}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+      return response.data;
+
+  } catch (error) {
+      console.log(error);
+  }
+});
  
 const postSlice = createSlice({
     name: 'post',
@@ -252,6 +285,34 @@ const postSlice = createSlice({
 
         builder.addCase(deleteComment.rejected, (state, action) => {
             state.error = action.payload
+        })
+
+
+        // like 
+        builder.addCase(fetchLikePost.pending, (state, action) => {
+        state.isLoading = true
+        })
+
+        builder.addCase(fetchLikePost.fulfilled, (state,action) => {
+            state.posts = action.payload.posts.reverse();
+        })
+
+        builder.addCase(fetchLikePost.rejected, (state, action) => {
+            state.error = action.payload;
+        })
+
+
+        // dislike 
+        builder.addCase(fetchDisLikePost.pending, (state, action) => {
+            state.isLoading = true;
+        })
+
+        builder.addCase(fetchDisLikePost.fulfilled, (state, action) => {
+            state.posts = action.payload.posts.reverse();
+        })
+
+        builder.addCase(fetchDisLikePost.rejected, (state, action) => {
+            state.error = action.payload;
         })
 
     }
