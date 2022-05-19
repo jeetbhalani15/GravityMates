@@ -103,10 +103,6 @@ export const addCommentOnPost = createAsyncThunk(
 
   export const fetchEditComment = createAsyncThunk("post/fetchEditComment", async ({token, postId, commentId, commentData}) => {
     try {
-      console.log(token)
-      console.log(postId)
-      console.log(commentId)
-      console.log(commentData)
         const {data : { comments }} = await axios.post(`/api/comments/edit/${postId}/${commentId}`,{commentData},
         {
           headers: {
