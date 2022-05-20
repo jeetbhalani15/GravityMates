@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const initialState = {
     posts: [],
@@ -22,15 +23,13 @@ export const getPost = createAsyncThunk("post/getPost",async()=>{
 
 }) 
 export const deletePost = createAsyncThunk("post/deletePost",async({ postId , token })=>{
-    console.log(postId)
-    console.log(token)
     try {
         console.log("innn")
         const res = await axios.delete(`/api/posts/${postId}`, {
             headers: {
               authorization: token,
             }});
-            console.log(res.data)
+            toast.success('Post Deleted!');
         return res.data
     } catch (error) {
         console.log(error)
@@ -46,6 +45,7 @@ export const addPost = createAsyncThunk(
         const res = await axios.post("/api/posts", { postData }, { headers: {
             authorization: token,
           }});
+          toast.success('Post Uploded!');
         return res.data;
       } catch (error) {
         console.log(error.response);
@@ -61,6 +61,7 @@ export const editPost = createAsyncThunk(
         const res = await axios.post(`/api/posts/edit/${postId}`, { postData }, { headers: {
             authorization: token,
           }});
+          toast.success('Post Updated!');
         return res.data;
       } catch (error) {
         console.log(error.response);
@@ -85,16 +86,10 @@ export const getPostById = createAsyncThunk(
 export const addCommentOnPost = createAsyncThunk(
     "post/addCommentOnPost",
     async ({postId, commentData, token}) => {
-        console.log("comment")
-        console.log(token)
-        console.log(postId)
-        console.log(commentData)
       try {
         const {data: {comments}} = await axios.post(`/api/comments/add/${postId}`, {commentData} , {headers:{
             authorization: token,
           }});
-
-          console.log(comments)
         return {comments, postId}
       } catch (error) {
         console.log(error)
@@ -111,6 +106,7 @@ export const addCommentOnPost = createAsyncThunk(
           },
         }
       );
+      toast.success('Comment Updated!');
         return { comments, postId };
 
     } catch (error) {
@@ -126,6 +122,7 @@ export const addCommentOnPost = createAsyncThunk(
           },
         }
       );
+      toast.success('Comment Deleted!');
         return { comments, postId };
 
     } catch (error) {
@@ -168,8 +165,6 @@ export const fetchDisLikePost = createAsyncThunk("post/fetchDisLikePost", async 
 
 export const addBookmark = createAsyncThunk("post/addBookmark", async ({token, postId}) => {
   try {
-    console.log(token)
-    console.log(postId)
       const response = await axios.post(`/api/users/bookmark/${postId}`,
       {},
       {
@@ -178,7 +173,7 @@ export const addBookmark = createAsyncThunk("post/addBookmark", async ({token, p
         },
       }
     );
-      console.log(response);
+    toast.success('Successfully Bookmarked!');
       return response.data;
 
   } catch (error) {
@@ -188,8 +183,6 @@ export const addBookmark = createAsyncThunk("post/addBookmark", async ({token, p
 })
 export const removeBookmark = createAsyncThunk("post/removeBookmark", async ({token, postId}) => {
   try {
-    console.log(token)
-    console.log(postId)
       const response = await axios.post(`/api/users/remove-bookmark/${postId}`,
       {},
       {
@@ -198,19 +191,36 @@ export const removeBookmark = createAsyncThunk("post/removeBookmark", async ({to
         },
       }
     );
-      console.log(response);
+    toast.success('Removed from Bookmarked!');
       return response.data;
 
   } catch (error) {
       console.error(error);
-
   }
 })
  
 const postSlice = createSlice({
     name: 'post',
     initialState,
-    reducers:{},
+    reducers : {
+      sortByTrending: (state) => {
+          state.posts = state.posts.sort(
+              (a, b) => b.likes.likeCount - a.likes.likeCount
+          );
+      },
+
+      sortByLatest: (state) => {
+      state.posts = state.posts.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      },
+
+      sortByOldest: (state) => {
+      state.posts = state.posts.sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      );
+      },
+  },
     extraReducers:(builder)=>{
 
         // GET POST
@@ -243,7 +253,7 @@ const postSlice = createSlice({
 
         // GET POST BY ID
         builder.addCase(getPostById.pending, (state) => {
-            state.isLoading = false;
+            state.isLoading = true;
         })
         builder.addCase(getPostById.fulfilled, (state,action) => {
             state.isLoading = false;
@@ -260,11 +270,11 @@ const postSlice = createSlice({
             state.isLoading = true;
         })
         builder.addCase(deletePost.fulfilled, (state,action) => {
-            state.isLoading = true;
+            state.isLoading = false;
             state.posts = action.payload.posts;
         })
         builder.addCase(deletePost.rejected, (state,action) => {
-            state.isLoading = true;
+            state.isLoading = false;
             state.deleteError = "could not delete post !";
         })
 
@@ -274,7 +284,7 @@ const postSlice = createSlice({
             state.isLoading = true;
         })
         builder.addCase(editPost.fulfilled, (state,action) => {
-            state.isLoading = true;
+            state.isLoading = false;
             state.posts = action.payload?.posts.reverse();
         })
         builder.addCase(editPost.rejected, (state) => {
@@ -371,12 +381,13 @@ const postSlice = createSlice({
 
         // Remove Bookmark 
         builder.addCase(removeBookmark .pending, (state, action) => {
-          state.error = "";
+          state.isLoading = true;
         })
         builder.addCase(removeBookmark.fulfilled, (state, action) => {
           state.bookmarks = action.payload.bookmarks;
         })
         builder.addCase(removeBookmark.rejected, (state, action) => {
+          state.isLoading = false
           state.error = action.payload;
         })
 
@@ -385,3 +396,4 @@ const postSlice = createSlice({
 
 export const postReducer = postSlice.reducer
 export const usePosts = () => useSelector((state) => state.post);
+export const  { sortByLatest, sortByOldest, sortByTrending } = postSlice.actions; 

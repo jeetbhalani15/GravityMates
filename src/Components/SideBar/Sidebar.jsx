@@ -26,10 +26,10 @@ function Sidebar() {
        <FiHome  size={20}/>
        <span className='hidden lg:block'>Home</span>
      </div></Link>
-     <div className='flex items-center gap-3 cursor-pointer hover:bg-[aliceblue] dark:hover:bg-[#5556565c] rounded-lg    py-4 pl-2 pr-8'>
+     <Link to={"/explore"}><div className='flex items-center gap-3 cursor-pointer hover:bg-[aliceblue] dark:hover:bg-[#5556565c] rounded-lg    py-4 pl-2 pr-8'>
        <VscRocket size={20}/>
        <span className='hidden lg:block'>Explore</span>
-     </div>
+     </div></Link>
      <Link to={"/bookmark"}><div className='hidden lg:flex items-center gap-3 cursor-pointer hover:bg-[aliceblue] dark:hover:bg-[#5556565c] rounded-lg   py-4 pl-2 pr-8'>
        <BsBookmark size={20}/>
        <span className='hidden lg:block'>Bookmark</span>
