@@ -49,9 +49,9 @@ const handlePostImage = (e)=>{
   return (
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute top-0">
       <form onSubmit={handleNewPostSubmit}>
-       <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96">
+       <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96 dark:bg-[#1a1919]">
         <h1 className=" text-xl text-sky-900 font-bold mt-2 ">New Post</h1>
-        <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
+        <span className=' absolute top-[10px] right-[14px] dark:text-white hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
         <div className='flex items-start gap-6'>
         <div className='w-20 lg:w-22 '>
                  <img className='rounded-full' src={userData.user?.img} alt="logo"/>
@@ -65,10 +65,10 @@ const handlePostImage = (e)=>{
              </div>
         </div>
         <div className="flex gap-2">
-          <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400' htmlFor='image'><BiImageAdd/>Add Image
+          <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400 dark:bg-[#8688885c] dark:text-white' htmlFor='image'><BiImageAdd/>Add Image
           <input type='file' accept="image/*" id="image" onChange={handlePostImage}  className=" invisible w-0 p-0 "/>
           </label>
-          <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
+          <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400 dark:bg-[#8688885c] dark:text-white"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
         </div>
           
       </div>

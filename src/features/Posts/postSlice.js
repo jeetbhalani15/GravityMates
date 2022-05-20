@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const initialState = {
     posts: [],
+    bookmarks: [],
     isLoading: false,
     deleteError: "",
     errorMessage: ""
@@ -164,6 +165,47 @@ export const fetchDisLikePost = createAsyncThunk("post/fetchDisLikePost", async 
       console.log(error);
   }
 });
+
+export const addBookmark = createAsyncThunk("post/addBookmark", async ({token, postId}) => {
+  try {
+    console.log(token)
+    console.log(postId)
+      const response = await axios.post(`/api/users/bookmark/${postId}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+      console.log(response);
+      return response.data;
+
+  } catch (error) {
+      console.error(error);
+
+  }
+})
+export const removeBookmark = createAsyncThunk("post/removeBookmark", async ({token, postId}) => {
+  try {
+    console.log(token)
+    console.log(postId)
+      const response = await axios.post(`/api/users/remove-bookmark/${postId}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+      console.log(response);
+      return response.data;
+
+  } catch (error) {
+      console.error(error);
+
+  }
+})
  
 const postSlice = createSlice({
     name: 'post',
@@ -313,6 +355,29 @@ const postSlice = createSlice({
 
         builder.addCase(fetchDisLikePost.rejected, (state, action) => {
             state.error = action.payload;
+        })
+
+        // Add Bookmark 
+        builder.addCase(addBookmark .pending, (state, action) => {
+          state.error = "";
+        })
+        builder.addCase(addBookmark.fulfilled, (state, action) => {
+          state.bookmarks = action.payload.bookmarks;
+        })
+        builder.addCase(addBookmark.rejected, (state, action) => {
+          state.error = action.payload;
+        })
+
+
+        // Remove Bookmark 
+        builder.addCase(removeBookmark .pending, (state, action) => {
+          state.error = "";
+        })
+        builder.addCase(removeBookmark.fulfilled, (state, action) => {
+          state.bookmarks = action.payload.bookmarks;
+        })
+        builder.addCase(removeBookmark.rejected, (state, action) => {
+          state.error = action.payload;
         })
 
     }

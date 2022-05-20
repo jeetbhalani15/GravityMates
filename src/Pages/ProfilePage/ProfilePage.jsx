@@ -78,7 +78,7 @@ function ProfilePage() {
   return (
     <>
       {" "}
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem]">
+      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
         {show && (
@@ -91,8 +91,8 @@ function ProfilePage() {
         {showAddPostModal && <PostModal setShow={setShow} />}
 
         {/* BODY_SECTION POST CARD  */}
-        <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem]">
-          <div className="lg:p-8 mt-[-3rem]">
+        <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab]">
+          <div className="lg:p-8 mt-[-3rem] dark:text-white">
             <div className="flex gap-3 lg:gap-6 items-center justify-center mt-4">
               <div className="w-20 lg:w-28 ">
                 <img
@@ -120,7 +120,7 @@ function ProfilePage() {
                     <div>
                       <button
                         onClick={() => setShow(true)}
-                        className=" p-1 rounded-md bg-slate-400 text-sm lg:p-2"
+                        className=" p-1 rounded-md bg-slate-400 dark:bg-[#8688885c] text-sm lg:p-2"
                       >
                         Edit profile
                       </button>
@@ -130,14 +130,14 @@ function ProfilePage() {
                       {isFollowed ? (
                         <button
                           onClick={unFollowHandler}
-                          className="lg:p-2 lg:rounded-md lg:bg-slate-400"
+                          className="lg:p-2 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]"
                         >
                           Unfollow
                         </button>
                       ) : (
                         <button
                           onClick={followUserHandler}
-                          className="lg:p-2 lg:rounded-md lg:bg-slate-400"
+                          className="lg:p-2 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]"
                         >
                           Follow +
                         </button>
@@ -156,7 +156,7 @@ function ProfilePage() {
                     <span> following {findUser?.following.length}</span>
                   </div>
                 </div>
-                <div className=" text-slate-800">{currentUser?.website}</div>
+                <div className=" text-slate-800 hover:cursor-pointer dark:text-slate-400">{currentUser?.website}</div>
               </div>
             </div>
             <div className="mt-2">

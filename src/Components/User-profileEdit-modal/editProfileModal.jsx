@@ -42,7 +42,7 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
   return (
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute top-0">
       <form onSubmit={(e)=>updateUserDataHandler(e)}>
-    <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96">
+    <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96 dark:bg-[#1a1919] dark:text-white">
      <h1 className=" text-xl text-sky-900 font-bold mt-2 ">Edit profile</h1>
      <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
      <div className='flex flex-col justify-center items-center gap-6'>
@@ -61,18 +61,18 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
             <label className='p-1'>username:</label><span className=' font-semibold'>{userData.username}</span>
             </div>
             <div className='flex items-center gap-2'>
-            <label className='p-1'>Website:</label><input onChange={(e)=>userDataChangeHandler(e)} name="website" value={userData.website}  className='p-1' type="text" placeholder='link...' />
+            <label className='p-1'>Website:</label><input  onChange={(e)=>userDataChangeHandler(e)} name="website" value={userData.website}  className='p-1 dark:text-black' type="text" placeholder='link...' />
             </div>
            <div className='flex items-start gap-2'>
                 <label className='p-1'>Bio:</label>
-               <textarea className=" w-full p-1 " type="text" name="bio" rows={4} onChange={(e)=>userDataChangeHandler(e)} value={userData.bio} placeholder='tell something about you...'/>
+               <textarea className=" w-full p-1 dark:text-black" type="text" name="bio" rows={4} onChange={(e)=>userDataChangeHandler(e)} value={userData.bio} placeholder='tell something about you...'/>
            </div>
             
           </div>
      </div>
      
      <div className="flex gap-2">
-       <button className="p-1 flex items-center gap-2 rounded-md  bg-slate-400"><MdPostAdd/>update</button>
+       <button className="p-1 flex items-center gap-2 rounded-md  bg-slate-400 dark:bg-[#8688885c]"><MdPostAdd/>update</button>
      </div>
    </div>
      </form>

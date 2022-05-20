@@ -50,7 +50,7 @@ const SingleCommentPage = () => {
   return (
     <>
       {" "}
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem]">
+      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
         {
@@ -61,8 +61,8 @@ const SingleCommentPage = () => {
 
 
         {/* BODY_SECTION POST CARD  */}
-        <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem]">
-          <h1 className="text-2xl font-bold">Commnets</h1>
+        <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab] dark:text-white">
+          <h1 className="text-2xl font-bold text-[#019db1]">Commnets</h1>
           <div className="lg:overflow-y-auto lg:h-[38.8rem] lg:mt-8">
             {posts?.map(
               (items) =>
@@ -84,7 +84,7 @@ const SingleCommentPage = () => {
                 required
               />
               <button
-                className=" lg:ml-[9.2rem] lg:py-0.5 px-4 lg:rounded-md lg:bg-slate-400"
+                className=" lg:ml-[9.2rem] lg:py-0.5 px-4 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]"
               >
                 Post
               </button>
