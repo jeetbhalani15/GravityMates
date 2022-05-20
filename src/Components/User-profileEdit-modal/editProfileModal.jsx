@@ -47,9 +47,9 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
      <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
      <div className='flex flex-col justify-center items-center gap-6'>
      <div className='w-20 lg:w-18 '>
-       <label>
+       <label className='flex' htmlFor='image'>
        <img className=' w-20 h-20 rounded-full' src={userData.img} alt="logo"/>
-       <input  onChange={(e) => imageUploadhandler(e)} accept="image/*" type="file" />
+       <input className=' invisible m-0 p-0 '  onChange={(e) => imageUploadhandler(e)} id="image" accept="image/*" type="file" />
        </label>
              
           </div>
