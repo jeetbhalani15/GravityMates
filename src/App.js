@@ -11,6 +11,8 @@ import BookmarkPage from "./Pages/BookmarkPage/BookmarkPage";
 
 function App() {
   return (
+    <>
+    <html className="dark">
     <Routes>
       <Route exact path="/" element={<Login/>} />
       <Route  path="/home" element={<HomePage/>} />
@@ -20,6 +22,8 @@ function App() {
       <Route  path="/login" element={<Login/>} />
       <Route  path="/signup" element={<Signup/>} />
     </Routes>
+    </html>
+    </>
     
   );
 }

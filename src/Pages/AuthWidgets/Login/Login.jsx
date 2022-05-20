@@ -27,7 +27,7 @@ function Login() {
     navigate("/home")
   }
   return (
- <div className="h-screen flex justify-center bg-zinc-200 ">
+ <div className="h-screen flex justify-center bg-zinc-200 dark:bg-[#000000ab] ">
           <div className="flex lg:w-1/2 justify-center items-center space-y-8">
             <div className="w-[85%]  px-8 md:px-32 lg:px-24">
             <form onSubmit={(e)=>loginHandler(e,userData)} className="bg-white rounded-md shadow-2xl p-5">

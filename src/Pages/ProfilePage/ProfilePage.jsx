@@ -78,7 +78,7 @@ function ProfilePage() {
   return (
     <>
       {" "}
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#00000082]">
+      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
         {show && (
@@ -120,7 +120,7 @@ function ProfilePage() {
                     <div>
                       <button
                         onClick={() => setShow(true)}
-                        className=" p-1 rounded-md bg-slate-400 text-sm lg:p-2"
+                        className=" p-1 rounded-md bg-slate-400 dark:bg-[#8688885c] text-sm lg:p-2"
                       >
                         Edit profile
                       </button>
@@ -130,14 +130,14 @@ function ProfilePage() {
                       {isFollowed ? (
                         <button
                           onClick={unFollowHandler}
-                          className="lg:p-2 lg:rounded-md lg:bg-slate-400"
+                          className="lg:p-2 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]"
                         >
                           Unfollow
                         </button>
                       ) : (
                         <button
                           onClick={followUserHandler}
-                          className="lg:p-2 lg:rounded-md lg:bg-slate-400"
+                          className="lg:p-2 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]"
                         >
                           Follow +
                         </button>

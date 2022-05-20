@@ -71,7 +71,7 @@ const removeFromBookmark = () => {
 
   return (
     <div className=" flex items-center justify-center max-w-[39rem] hover:cursor-pointer">
-      <div className="justify-center p-0.5 max-w-xl border-zinc-400 rounded-[8px]  border-2 dark:text-white ">
+      <div className="justify-center p-0.5 max-w-xl border-zinc-400 rounded-[8px]  border-2 dark:text-[#b1b1b1] ">
         <div className=" relative flex items-center justify-between rounded-lg p-2 ">
           <div className="  w-12 flex items-center gap-2 p-1">
             <img className="rounded-full" src={logo} alt="logo" />
@@ -157,7 +157,7 @@ const removeFromBookmark = () => {
 
           </div>
 
-          <p className="font-bold text-sm pl-3 text-gray-300">{postData?.likes?.likeCount} Likes</p>
+          <p className="font-bold text-sm pl-3 text-gray-300 dark:text-[#b1b1b1]">{postData?.likes?.likeCount} Likes</p>
           {
                 postData?.likes?.likeCount > 0
                 ?
@@ -169,7 +169,7 @@ const removeFromBookmark = () => {
                 }
                 </>
                 :
-                <p className='mt-[-1.3rem] p-4 font-bold text-sm pl-3 text-gray-600 dark:text-white'>Be the first to like</p>
+                <p className='mt-[-1.3rem] p-4 font-bold text-sm pl-3 text-gray-600 dark:text-[#b1b1b1]'>Be the first to like</p>
 
             }
             

@@ -65,10 +65,10 @@ const handlePostImage = (e)=>{
              </div>
         </div>
         <div className="flex gap-2">
-          <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400' htmlFor='image'><BiImageAdd/>Add Image
+          <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400 dark:bg-[#8688885c] dark:text-white' htmlFor='image'><BiImageAdd/>Add Image
           <input type='file' accept="image/*" id="image" onChange={handlePostImage}  className=" invisible w-0 p-0 "/>
           </label>
-          <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
+          <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400 dark:bg-[#8688885c] dark:text-white"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
         </div>
           
       </div>

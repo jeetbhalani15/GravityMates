@@ -26,7 +26,7 @@ function HomePage() {
 
   return (
     <>
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#00000082]">
+      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
        {show && <PostModal setShow={setShow}/>}
@@ -38,7 +38,7 @@ function HomePage() {
               <input className="border-none p-2 w-24 ml-3 outline-none text-xs bg-gray-200 rounded-full  xs:w-60 " />
               <ImSearch className="w-8 mr-2" />
             </div>
-            <div className=" flex items-center gap-3 hover:cursor-pointer lg:text-lg lg:text-sky-900 lg:font-bold dark:text-[#f8f8ff]">
+            <div className=" flex items-center gap-3 hover:cursor-pointer lg:text-lg text-[#019db1] lg:font-bold">
               {`Hi,${userData.user?.username}`}
               <div>
               <VscDiffAdded className="dark:text-white" onClick={()=> setShow(true)}  size={20}/>

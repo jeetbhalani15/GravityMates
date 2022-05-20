@@ -12,13 +12,13 @@ const BookmarkPage = () => {
 ); 
   return (
     <>
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#00000082]">
+      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
 
         {/* BODY_SECTION POST CARD  */}
         <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab] dark:text-white">
-        <h1 className="text-2xl font-bold">Bookmarks</h1>
+        <h1 className="text-2xl text-[#019db1] font-bold">Bookmarks</h1>
         <div className="lg:overflow-y-auto lg:h-[38.8rem] lg:mt-8">
         {
                 bookmarks.length === 0

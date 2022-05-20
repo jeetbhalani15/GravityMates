@@ -37,7 +37,7 @@ function SuggestionCard() {
     checked ? html.classList.add("dark") : html.classList.add("light");
   };
   return (
-    <div className=" hidden xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl ">
+    <div className=" hidden xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl dark:bg-[#282828] dark:text-white ">
       <div className="lg:flex lg:items-center lg:justify-end lg:gap-2 lg:p-4 hover:cursor-pointer">
 
         <div className="flex justify-end items-center space-x-2 mx-auto relative">

@@ -72,7 +72,7 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
      </div>
      
      <div className="flex gap-2">
-       <button className="p-1 flex items-center gap-2 rounded-md  bg-slate-400"><MdPostAdd/>update</button>
+       <button className="p-1 flex items-center gap-2 rounded-md  bg-slate-400 dark:bg-[#8688885c]"><MdPostAdd/>update</button>
      </div>
    </div>
      </form>

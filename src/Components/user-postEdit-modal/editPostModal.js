@@ -61,10 +61,10 @@ const EditPostModal = ({setShowEditModal,postsData,setPostsData,setShowMenu, pos
       </div>
       
       <div className="flex gap-2">
-        <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400' htmlFor='image'><BiImageAdd/>Add Image
+        <label className='flex p-2 items-center gap-2 rounded-md bg-slate-400 dark:bg-[#8688885c]' htmlFor='image'><BiImageAdd/>Add Image
         <input type='file' accept="image/*" id="image" onChange={handlePostImage} name="img"  className=" invisible w-0 p-0 "/>
         </label>
-        <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
+        <button className="p-2 flex items-center gap-2 rounded-md  bg-slate-400 dark:bg-[#8688885c]"><MdPostAdd/>{ isLoading ? 'add post...':"add post"}</button>
       </div>
     </div>
     </form>
