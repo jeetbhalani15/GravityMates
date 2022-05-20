@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { FiHeart } from "react-icons/fi";
+import { BsHeartFill } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 import { FiMessageCircle } from "react-icons/fi";
 import { FiSend } from "react-icons/fi";
 import { BsBookmark } from "react-icons/bs";
@@ -11,6 +12,8 @@ import { useDispatch } from "react-redux";
 import {
   addCommentOnPost,
   deletePost,
+  fetchDisLikePost,
+  fetchLikePost,
   getPost,
   usePosts,
 } from "../../features/Posts/postSlice";
@@ -44,6 +47,14 @@ function Card({ postData }) {
     dispatch(addCommentOnPost({ postId, commentData, token }));
     setComment((pre) => ({ ...pre, text: "" }));
   };
+
+  const likeHandler = () => {
+    dispatch(fetchLikePost({token, postId}));
+}
+
+const dislikeHandler = () => {
+    dispatch(fetchDisLikePost({token, postId}));
+}
 
   return (
     <div className=" flex items-center justify-center max-w-[39rem] hover:cursor-pointer">
@@ -99,9 +110,17 @@ function Card({ postData }) {
         <div className="border-t border-slate-400">
           <div className="flex items-center justify-between p-4 lg:w-[30rem]">
             <div className="flex items-center gap-4 ">
-              <div>
-                <FiHeart size={20} />
-              </div>
+
+
+              {
+                postData?.likes?.likeCount > 0
+                ?
+                <BsHeartFill onClick={dislikeHandler} className='text-xl  cursor-pointer text-red-500  hover:scale-105'/>
+                :
+                <BsHeart onClick={likeHandler} className='text-xl text-black cursor-pointer hover:text-zinc-600 hover:scale-105'/>
+                    }
+
+
               {/* <div onClick={() => setShowComments(!show)}>
                 <FiMessageCircle size={20} />
               </div> */}
@@ -118,10 +137,23 @@ function Card({ postData }) {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center ml-4 w-[28rem]">
-            <div>30 Likes</div>
-            <p className="w-full">{postData?.caption}</p>
-          </div>
+
+          {
+                postData?.likes?.likeCount > 0
+                ?
+                <>
+                {
+                    postData?.likes?.likedBy.map(liked => (
+                        <p className='font-bold text-sm pl-3 mt-2 text-grey-300'><span className='font-bold text-black'>liked by </span> <Link to={`/profile/${liked.username}`}>{liked.username}</Link></p>
+                    ))
+                }
+                </>
+                :
+                <p className='font-bold text-sm pl-3 mt-2 text'>Be the first to like</p>
+
+            }
+
+
         </div>
 
         {/* { posts?.comments.map(items => <CommentCard items={items} /> )  }        */}
