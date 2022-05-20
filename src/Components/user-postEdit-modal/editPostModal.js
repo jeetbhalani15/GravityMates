@@ -45,7 +45,7 @@ const EditPostModal = ({setShowEditModal,postsData,setPostsData,setShowMenu, pos
   return (
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute left-0 top-0">
     <form onSubmit={handleNewEditedPostSubmit}>
-     <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96">
+     <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96 dark:bg-[#1a1919]">
       <h1 className=" text-xl text-sky-900 font-bold mt-2 ">New Post</h1>
       <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShowEditModal(false)} size={25}/></span>
       <div className='flex items-start gap-6'>
@@ -54,8 +54,8 @@ const EditPostModal = ({setShowEditModal,postsData,setPostsData,setShowMenu, pos
                <img className='w-24 mt-8 rounded-[5px]' src={postsData?.img} alt=""/>
            </div>
            <div className='flex flex-col items-center gap-4'>
-             <input className='p-1' type="text" maxLength="100" onChange={(e)=>postDatahandler(e)} value={postData?.caption} name="caption" placeholder='caption...' required />
-             <textarea className=" w-full p-1" maxLength="120" type="text" rows={8} placeholder='whats happening ?'
+             <input className='p-1 dark:text-black' type="text" maxLength="100" onChange={(e)=>postDatahandler(e)} value={postData?.caption} name="caption" placeholder='caption...' required />
+             <textarea className=" w-full p-1 dark:text-black" maxLength="120" type="text" rows={8} placeholder='whats happening ?'
              value={postData?.content} name="content" onChange={(e)=>postDatahandler(e)} required/>
            </div>
       </div>

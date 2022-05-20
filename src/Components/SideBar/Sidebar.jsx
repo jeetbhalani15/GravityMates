@@ -30,10 +30,10 @@ function Sidebar() {
        <VscRocket size={20}/>
        <span className='hidden lg:block'>Explore</span>
      </div>
-     <div className='hidden lg:flex items-center gap-3 cursor-pointer hover:bg-[aliceblue] rounded-lg   py-4 pl-2 pr-8'>
+     <Link to={"/bookmark"}><div className='hidden lg:flex items-center gap-3 cursor-pointer hover:bg-[aliceblue] rounded-lg   py-4 pl-2 pr-8'>
        <BsBookmark size={20}/>
        <span className='hidden lg:block'>Bookmark</span>
-     </div>
+     </div></Link>
      <div className=' flex lg:hidden items-center gap-3 cursor-pointer hover:bg-[aliceblue] rounded-lg   py-4 pl-2 pr-8'>
        <GrAddCircle size={20}/>
      </div>

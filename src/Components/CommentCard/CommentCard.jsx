@@ -14,7 +14,7 @@ const CommentCard = ({ commentData, setShowModal,editHadnler, deleteCommentHandl
       <div className="flex flex-col gap-2">
         <div className="flex items-start gap-2">
           <h2 className=" text-[14px] font-bold">{commentData.username}</h2>
-          <p className="text-md text-gray-800">{commentData.text}</p>
+          <p className="text-md text-gray-400">{commentData.text}</p>
         </div>
         <div className="flex items-center gap-2 mt-[-4px] ">
           <small className="text-xs">8hr ago</small>

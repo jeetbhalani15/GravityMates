@@ -49,9 +49,9 @@ const handlePostImage = (e)=>{
   return (
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute top-0">
       <form onSubmit={handleNewPostSubmit}>
-       <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96">
+       <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96 dark:bg-[#1a1919]">
         <h1 className=" text-xl text-sky-900 font-bold mt-2 ">New Post</h1>
-        <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
+        <span className=' absolute top-[10px] right-[14px] dark:text-white hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
         <div className='flex items-start gap-6'>
         <div className='w-20 lg:w-22 '>
                  <img className='rounded-full' src={userData.user?.img} alt="logo"/>
