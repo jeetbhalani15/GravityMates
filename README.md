@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+#  Gravity Mates
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Gravity Mates is a social app that allows users to share photos, and videos with others and works on all screens laptop tabs and mobiles
 
-## Available Scripts
+![alt text](https://img.shields.io/badge/-HTML-orange)
+![alt text](https://img.shields.io/badge/-CSS-blue)
+![alt text](https://img.shields.io/badge/-REACT-blue)
+![alt text](https://img.shields.io/badge/-REDUX-blue)
+![alt text](https://img.shields.io/badge/-TAILWINDCSS-blue)
 
-In the project directory, you can run:
 
-### `yarn start`
+## Tech Stack
+**Front End:** HTML, CSS, REACTJS, REDUX TOOLKIT, TAILWIND CSS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**Hosting:** Github, Netlify, vercel
+ 
+## Demo
+![image](![image](https://user-images.githubusercontent.com/69383785/162261961-508857c5-3342-4a7b-aacd-4f83a70d3eeb.png))
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Live Demo: [Gravity Mates ](https://gravity-mates-p9hsa5aiw-jeetbhalani15.vercel.app/)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Future Features
 
-### `yarn build`
+1. login / sign up
+2. Add post, Comments, Bookmark 
+3. Edit profile .
+4. Like/dislike images.
+5. Follow/Unfollow users 
+6. Filter post by trending/newest/oldest
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## My learnings
+* Learn to organize CSS code
+* How to write clean code
+* How to write sementic HTML
+* Learn How to organize files and folders
+* Impact of colors in websites
+* How to structure layout 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Hi, I'm Jeet! 👋
+### About Me
+* Hey learners, I'm Jeet Bhalani, [Neog Camp](https://neog.camp/) '2022 NeoGrammer.
+### Social 
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://jeetbhalani-portfolio.netlify.app/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jeetbhalani/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/je_et15)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Acknowledgement
+* I wanna thanks to my mentor [Tanay Pratap](https://twitter.com/tanaypratap), & his team for inspiring, guiding and shaping our future.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
