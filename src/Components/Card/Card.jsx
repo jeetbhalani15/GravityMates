@@ -84,17 +84,17 @@ const removeFromBookmark = () => {
         </div>
 
         {showMenu && (
-          <div className=" absolute right-[31%] p-2 border bg-slate-300 w-fit">
+          <div className=" absolute right-[31%] p-2 dark:bg-[#000000ab]  w-fit">
             {user?.username === postData?.username ? (
               <>
                 <div className="flex " onClick={() => setShowEditModal(true)}>
-                  <span className="px-1 py-1 flex items-center gap-1">
+                  <span className="px-1 py-1 flex items-center gap-1  dark:bg-[#8688885c] dark:text-white">
                     <MdDeleteOutline className="" color="grey" size={20} />
                     edit
                   </span>
                 </div>
                 <div className="flex " onClick={() => deletePostHandler()}>
-                  <span className="px-1 py-1 flex items-center gap-1">
+                  <span className="px-1 py-1 flex items-center gap-1 dark:bg-[#8688885c] dark:text-white">
                     <MdDeleteOutline className="" color="grey" size={20} />
                     delete
                   </span>
@@ -102,7 +102,7 @@ const removeFromBookmark = () => {
               </>
             ) : (
               <div className="flex ">
-                <span className="px-1 py-1 flex items-center gap-1">
+                <span className="px-1 py-1 flex items-center gap-1 dark:bg-[#8688885c] dark:text-white">
                   <MdDeleteOutline className="" color="grey" size={20} />
                   unfollow
                 </span>
