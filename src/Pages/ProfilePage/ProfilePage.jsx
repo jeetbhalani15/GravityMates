@@ -32,46 +32,47 @@ function ProfilePage() {
 
   const userData = useSelector((state) => state.user);
   console.log(userData.user.username);
-
-  useEffect(() => {
-    dispatch(fetchAllUsersData());
-    dispatch(getPost());
-  }, []);
-  console.log(username)
-
+  
   const authUser = allUsers?.users?.find(
     (item) => item.username === user.username
   );
   const isFollowed = authUser?.following?.find(
     (item) => item.username === username
-  );
-  console.log(isFollowed)
+    );
 
   const findUser = userData.allUsers.users?.find(
     (user) => user.username === username
-  );
-  const postsCount = posts.filter(
+    );
+    const postsCount = posts.filter(
     (item) => item.username === findUser?.username
-  );
+    );
+    
+    if (findUser?.username === userData.user?.username) {
+      currentUser = userData.user;
+    } else {
+      currentUser = findUser;
+    }
+    const userId = findUser?._id;
+    
+    useEffect(() => {
+      dispatch(fetchAllUsersData());
+      dispatch(getPost());
+    }, []);
 
-  if (findUser?.username === userData.user?.username) {
-    currentUser = userData.user;
-  } else {
-    currentUser = findUser;
-  }
-  const userId = findUser?._id;
-
-  const logouthandler = () => {
-    dispatch(logoutUser());
-    navigate("/");
-  };
-
-  const followUserHandler = () => {
+    // logout
+    const logouthandler = () => {
+      dispatch(logoutUser());
+      navigate("/");
+    };
+    
+    // follow
+    const followUserHandler = () => {
       console.log("hello")
-    dispatch(fetchFollowUser({ token, userId }));
+      dispatch(fetchFollowUser({ token, userId }));
     console.log("hi")
   };
 
+  // unfollow
   const unFollowHandler = () => {
     dispatch(fetchUnFollowUser({ token, userId }));
   };
@@ -106,15 +107,6 @@ function ProfilePage() {
                   <div className="font-bold lg:text-xl lg:pr-2 ">
                     {currentUser?.username}
                   </div>
-
-                  {/* <div>
-                    <button
-                      onClick={() => setShow(true)}
-                      className=" p-1 rounded-md bg-slate-400 text-sm lg:p-2"
-                    >
-                      Edit profile
-                    </button>
-                  </div> */}
 
                   {findUser?.username === userData.user?.username ? (
                     <div>

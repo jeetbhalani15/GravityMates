@@ -4,7 +4,7 @@ import { MdOutlineModeEdit } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { useAuth } from "../../features/Auth/authSlice";
 
-const CommentCard = ({ commentData, setShowModal,editHadnler, deleteCommentHandler }) => {
+const CommentCard = ({commentData,setShowModal,editHadnler,deleteCommentHandler}) => {
   const { user } = useAuth();
   return (
     <div className="flex items-start gap-2 p-2">
@@ -21,10 +21,18 @@ const CommentCard = ({ commentData, setShowModal,editHadnler, deleteCommentHandl
           <small>reply</small>
           {user?.username === commentData?.username && (
             <div className="flex gap-4 ml-56 hover:cursor-pointer">
-              <small onClick={()=>editHadnler(commentData.text, commentData._id)} className="hover:opacity-60">
+              <small
+                onClick={() => editHadnler(commentData.text, commentData._id)}
+                className="hover:opacity-60"
+              >
                 <MdOutlineModeEdit size={18} />
               </small>
-              <small onClick={()=>deleteCommentHandler(commentData._id)} className="hover:opacity-60"><MdDeleteOutline size={18}/></small>
+              <small
+                onClick={() => deleteCommentHandler(commentData._id)}
+                className="hover:opacity-60"
+              >
+                <MdDeleteOutline size={18} />
+              </small>
             </div>
           )}
         </div>

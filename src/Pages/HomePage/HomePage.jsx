@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {ImSearch} from "react-icons/im"
-import {VscDiffAdded} from "react-icons/vsc"
+import { ImSearch } from "react-icons/im";
+import { VscDiffAdded } from "react-icons/vsc";
 import Header from "../../Components/Header/Header";
 import Card from "../../Components/Card/Card";
 import Sidebar from "../../Components/SideBar/Sidebar";
@@ -8,53 +8,64 @@ import PostModal from "../../Components/User-post-modal/PostModal";
 import SuggestionCard from "../../Components/SuggestionCard/SuggestionCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsersData, useAuth } from "../../features/Auth/authSlice";
-import { getPost, sortByLatest, sortByOldest, sortByTrending, usePosts } from "../../features/Posts/postSlice";
-
-
+import {
+  getPost,
+  sortByLatest,
+  sortByOldest,
+  sortByTrending,
+  usePosts,
+} from "../../features/Posts/postSlice";
 
 function HomePage() {
-  const [show,setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  const userData = useSelector(state => state.user)
-  const {posts} = usePosts();
-  const postData = useSelector(store => store.post);
-  const {allUsers} = useAuth();
+  const userData = useSelector((state) => state.user);
+  const { posts } = usePosts();
+  const postData = useSelector((store) => store.post);
+  const { allUsers } = useAuth();
   // const posts = useSelector(state=> state.post);
   const [activeFilter, setActiveFilter] = useState("");
-  const adminUser = allUsers?.users?.find(item => item.username === userData.user?.username);
+  const adminUser = allUsers?.users?.find(
+    (item) => item.username === userData.user?.username
+  );
 
-  const showPosts = postData.posts.filter(item => 
-    item.username === adminUser?.username 
-    || 
-    adminUser?.following.some(follower => follower.username === item.username));
+  const showPosts = postData.posts.filter(
+    (item) =>
+      item.username === adminUser?.username ||
+      adminUser?.following.some(
+        (follower) => follower.username === item.username
+      )
+  );
 
-  useEffect(()=>{
-    dispatch(fetchAllUsersData())
+  useEffect(() => {
+    dispatch(fetchAllUsersData());
     dispatch(getPost());
-  },[])
+  }, []);
 
+  // sort by trending
   const sortByTrandingHandler = () => {
     dispatch(sortByTrending());
     setActiveFilter("trending");
-}
+  };
 
-const sortByNewestHandler = () => {
+  // sort by newest
+  const sortByNewestHandler = () => {
     dispatch(sortByLatest());
     setActiveFilter("newest");
-}
+  };
 
-const sortByOldestHandler = () => {
+  // sort by oldest
+  const sortByOldestHandler = () => {
     dispatch(sortByOldest());
     setActiveFilter("oldest");
-}
-
+  };
 
   return (
     <>
       <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
-       {show && <PostModal setShow={setShow}/>}
+        {show && <PostModal setShow={setShow} />}
 
         {/* BODY_SECTION POST CARD  */}
         <div className=" mt-20 lg:mt-8 w-screen lg:p-8 bg-[#69696933] lg:w-[43.7rem] dark:bg-[#000000ab]">
@@ -66,30 +77,52 @@ const sortByOldestHandler = () => {
             <div className=" hidden lg:flex lg:items-center lg:gap-3 lg:hover:cursor-pointer lg:text-lg lg:text-[#019db1] lg:font-bold">
               {`Hi,${userData.user?.username}`}
               <div>
-              <VscDiffAdded className="dark:text-white" onClick={()=> setShow(true)}  size={20}/>
+                <VscDiffAdded
+                  className="dark:text-white"
+                  onClick={() => setShow(true)}
+                  size={20}
+                />
+              </div>
             </div>
-            </div>
-          
           </div>
-            
-       <div className="flex justify-center text-white font-bold gap-3">
-                        <button onClick={sortByTrandingHandler} className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${activeFilter === "trending" && "border-[#019db1]"} text-white text-center py-1 px-4 rounded`}>Trending</button>
-                        <button onClick={sortByNewestHandler}  className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${activeFilter === "newest" && "border-[#019db1]"} text-white text-center py-1 px-4 rounded`}>Newest</button>
-                        <button onClick={sortByOldestHandler}  className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${activeFilter === "oldest" && "border-[#019db1]"} text-white text-center py-1 px-4 rounded`}>Oldest</button>
-                    </div>
+
+          <div className="flex justify-center text-white font-bold gap-3">
+            <button
+              onClick={sortByTrandingHandler}
+              className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${
+                activeFilter === "trending" && "border-[#019db1]"
+              } text-white text-center py-1 px-4 rounded`}
+            >
+              Trending
+            </button>
+            <button
+              onClick={sortByNewestHandler}
+              className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${
+                activeFilter === "newest" && "border-[#019db1]"
+              } text-white text-center py-1 px-4 rounded`}
+            >
+              Newest
+            </button>
+            <button
+              onClick={sortByOldestHandler}
+              className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${
+                activeFilter === "oldest" && "border-[#019db1]"
+              } text-white text-center py-1 px-4 rounded`}
+            >
+              Oldest
+            </button>
+          </div>
           <div className=" flex flex-col gap-6 lg:overflow-y-auto mt-8 lg:h-[33.6rem]">
-          
-            {posts?.map((items)=> <Card key={items._id} postData={items}/>)}
+            {posts?.map((items) => (
+              <Card key={items._id} postData={items} />
+            ))}
           </div>
         </div>
 
         {/* //  NAVBAR_SECTION */}
         <Sidebar setShow={setShow} />
       </div>
-      <SuggestionCard/>
-
-
-    
+      <SuggestionCard />
     </>
   );
 }

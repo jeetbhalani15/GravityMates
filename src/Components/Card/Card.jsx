@@ -10,6 +10,9 @@ import { MdDeleteOutline } from "react-icons/md";
 import logo from "../../Assets/Images/logo.png";
 import { useAuth } from "../../features/Auth/authSlice";
 import { useDispatch } from "react-redux";
+import EditPostModal from "../user-postEdit-modal/editPostModal";
+import CommentCard from "../CommentCard/CommentCard";
+import { Link } from "react-router-dom";
 import {
   addBookmark,
   addCommentOnPost,
@@ -20,61 +23,66 @@ import {
   removeBookmark,
   usePosts,
 } from "../../features/Posts/postSlice";
-import EditPostModal from "../user-postEdit-modal/editPostModal";
-import CommentCard from "../CommentCard/CommentCard";
-import {Link} from "react-router-dom";
 
 function Card({ postData }) {
   const [show, setShowComments] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [postsData, setPostsData] = useState({
-    caption: postData?.caption,
-    content: postData?.content,
-    img: postData?.img,
-  });
   const { token, user } = useAuth();
   const { bookmarks, posts } = usePosts();
   const dispatch = useDispatch();
   const [commentData, setComment] = useState({ text: "" });
   const postId = postData?._id;
+  const isBookmarked = bookmarks.some((curr) => curr === postId);
+  const [postsData, setPostsData] = useState({
+    caption: postData?.caption,
+    content: postData?.content,
+    img: postData?.img,
+  });
 
-  const isBookmarked = bookmarks.some(curr => curr === postId);
-
-
+  // delete post
   const deletePostHandler = () => {
     dispatch(deletePost({ postId: postData?._id, token }));
     dispatch(getPost());
     setShowMenu(false);
   };
 
+  // add comment
   const addCommentsHandler = () => {
     dispatch(addCommentOnPost({ postId, commentData, token }));
     setComment((pre) => ({ ...pre, text: "" }));
   };
 
+  // like post
   const likeHandler = () => {
-    dispatch(fetchLikePost({token, postId}));
-}
+    dispatch(fetchLikePost({ token, postId }));
+  };
 
-const dislikeHandler = () => {
-    dispatch(fetchDisLikePost({token, postId}));
-}
+  // dislike post
+  const dislikeHandler = () => {
+    dispatch(fetchDisLikePost({ token, postId }));
+  };
 
-const addToBookmark = () => {
-  dispatch(addBookmark({token, postId}));
-}
+  // add bookmark
+  const addToBookmark = () => {
+    dispatch(addBookmark({ token, postId }));
+  };
 
-const removeFromBookmark = () => {
-  dispatch(removeBookmark({token, postId}));
-}
+  // remove bookmarked
+  const removeFromBookmark = () => {
+    dispatch(removeBookmark({ token, postId }));
+  };
 
   return (
     <div className=" flex items-center justify-center max-w-[39rem] hover:cursor-pointer">
       <div className="justify-center p-[0.6rem] max-w-xl border-zinc-400 rounded-[8px]  border-2 dark:text-[#b1b1b1] ">
         <div className=" relative flex items-center justify-between rounded-lg p-2 ">
           <div className="  w-12 flex items-center gap-2 p-1">
-            <img className=" w-9 h-8 rounded-full" src={postData?.img} alt="logo" />
+            <img
+              className=" w-9 h-8 rounded-full"
+              src={postData?.img}
+              alt="logo"
+            />
             <div className="flex flex-col">
               {postData?.firstName}
               <small className="w-44">{`${postData?.username} . May 16`}</small>
@@ -123,72 +131,71 @@ const removeFromBookmark = () => {
         <div className="border-t border-slate-400">
           <div className="flex items-center justify-between p-4 lg:w-[30rem]">
             <div className="flex items-center gap-4 ">
+              {postData?.likes?.likeCount > 0 ? (
+                <BsHeartFill
+                  onClick={dislikeHandler}
+                  className="text-xl  cursor-pointer text-red-500  hover:scale-105"
+                />
+              ) : (
+                <BsHeart
+                  onClick={likeHandler}
+                  className="text-xl text-black dark:text-white cursor-pointer hover:text-zinc-600 hover:scale-105"
+                />
+              )}
 
-
-              {
-                postData?.likes?.likeCount > 0
-                ?
-                <BsHeartFill onClick={dislikeHandler} className='text-xl  cursor-pointer text-red-500  hover:scale-105'/>
-                :
-                <BsHeart onClick={likeHandler} className='text-xl text-black dark:text-white cursor-pointer hover:text-zinc-600 hover:scale-105'/>
-                    }
-
-
-              {/* <div onClick={() => setShowComments(!show)}>
-                <FiMessageCircle size={20} />
-              </div> */}
-              <Link to={`/comments/${postData?.id}`}><div onClick={() => setShowComments(!show)}>
-                <FiMessageCircle size={20} />
-              </div>
+              <Link to={`/comments/${postData?.id}`}>
+                <div onClick={() => setShowComments(!show)}>
+                  <FiMessageCircle size={20} />
+                </div>
               </Link>
               <div>
                 <FiSend size={20} />
               </div>
             </div>
-            
-            {
-              isBookmarked
-               ?
-               <BsBookmarkCheckFill onClick={removeFromBookmark} className='text-xl text-cyan-500 cursor-pointer hover:text-cyan-500 hover:scale-105'/>
-                :
-               <BsBookmark onClick={addToBookmark} className='text-xl text-white cursor-pointer hover:text-blue-500 hover:scale-105'/>
-               }
 
-
+            {isBookmarked ? (
+              <BsBookmarkCheckFill
+                onClick={removeFromBookmark}
+                className="text-xl text-cyan-500 cursor-pointer hover:text-cyan-500 hover:scale-105"
+              />
+            ) : (
+              <BsBookmark
+                onClick={addToBookmark}
+                className="text-xl text-white cursor-pointer hover:text-blue-500 hover:scale-105"
+              />
+            )}
           </div>
 
-          <p className="font-bold text-sm pl-3 text-gray-300 dark:text-[#b1b1b1]">{postData?.likes?.likeCount} Likes</p>
-          {
-                postData?.likes?.likeCount > 0
-                ?
-                <>
-                {
-                    postData?.likes?.likedBy.map(liked => (
-                        <p key={liked._id} className=' mt-[-1.3rem] p-4 font-bold text-sm text-grey-300 '><span className='font-bold text-black dark:text-white'>liked by </span> <Link to={`/profile/${liked.username}`}><span className=" text-sm">{liked.username}</span></Link></p>
-                    ))
-                }
-                </>
-                :
-                <p className='mt-[-1.3rem] p-4 font-bold text-sm pl-3 text-gray-600 dark:text-[#b1b1b1]'>Be the first to like</p>
-
-            }
-             <p className='text-sm pl-3 mt-[-1rem] text-gray-300 p-[0.8rem]'><span className='font-bold text-white'>{postData?.username}</span> {postData?.caption}</p>
-             <small className='text-gray-400 pl-3'>{postData?.createdAt}</small>
-            
-
-
+          <p className="font-bold text-sm pl-3 text-gray-300 dark:text-[#b1b1b1]">
+            {postData?.likes?.likeCount} Likes
+          </p>
+          {postData?.likes?.likeCount > 0 ? (
+            <>
+              {postData?.likes?.likedBy.map((liked) => (
+                <p
+                  key={liked._id}
+                  className=" mt-[-1.3rem] p-4 font-bold text-sm text-grey-300 "
+                >
+                  <span className="font-bold text-black dark:text-white">
+                    liked by{" "}
+                  </span>{" "}
+                  <Link to={`/profile/${liked.username}`}>
+                    <span className=" text-sm">{liked.username}</span>
+                  </Link>
+                </p>
+              ))}
+            </>
+          ) : (
+            <p className="mt-[-1.3rem] p-4 font-bold text-sm pl-3 text-gray-600 dark:text-[#b1b1b1]">
+              Be the first to like
+            </p>
+          )}
+          <p className="text-sm pl-3 mt-[-1rem] text-gray-300 p-[0.8rem]">
+            <span className="font-bold text-white">{postData?.username}</span>{" "}
+            {postData?.caption}
+          </p>
+          <small className="text-gray-400 pl-3">{postData?.createdAt}</small>
         </div>
-
-        {/* { posts?.comments.map(items => <CommentCard items={items} /> )  }        */}
-        {/* {posts.map((item) =>
-          (item.comments.map(
-            (comment) =>
-               (
-                <CommentCard key={comment.id} commentData={comment} />
-              )
-          ))
-        )} */}
-
 
         {false && (
           <div className=" p-2 flex items-center gap-2 w-[28rem] ">

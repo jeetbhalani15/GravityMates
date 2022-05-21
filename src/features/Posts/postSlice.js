@@ -12,6 +12,7 @@ const initialState = {
 
 }
 
+// get post
 export const getPost = createAsyncThunk("post/getPost",async()=>{
     try {
         const res = await axios.get('/api/posts');
@@ -22,6 +23,8 @@ export const getPost = createAsyncThunk("post/getPost",async()=>{
     }
 
 }) 
+
+// delete post
 export const deletePost = createAsyncThunk("post/deletePost",async({ postId , token })=>{
     try {
         console.log("innn")
@@ -36,6 +39,8 @@ export const deletePost = createAsyncThunk("post/deletePost",async({ postId , to
     }
 
 }) 
+
+// add post
 export const addPost = createAsyncThunk(
     "post/addPost",
     async ({ postData, token}) => {
@@ -52,6 +57,8 @@ export const addPost = createAsyncThunk(
       }
     }
   ); 
+
+// edit post
 export const editPost = createAsyncThunk(
     "post/editPost",
     async ({ postData, token, postId}) => {
@@ -68,6 +75,8 @@ export const editPost = createAsyncThunk(
       }
     }
   ); 
+
+// get all post
 export const getPostById = createAsyncThunk(
     "post/getPostById",
     async ({postId}) => {
@@ -82,7 +91,7 @@ export const getPostById = createAsyncThunk(
     }
   ); 
 
-//COMMENTS   
+// comments  
 export const addCommentOnPost = createAsyncThunk(
     "post/addCommentOnPost",
     async ({postId, commentData, token}) => {
@@ -97,6 +106,7 @@ export const addCommentOnPost = createAsyncThunk(
     }
   ); 
 
+  // edit comment
   export const fetchEditComment = createAsyncThunk("post/fetchEditComment", async ({token, postId, commentId, commentData}) => {
     try {
         const {data : { comments }} = await axios.post(`/api/comments/edit/${postId}/${commentId}`,{commentData},
@@ -113,6 +123,8 @@ export const addCommentOnPost = createAsyncThunk(
         return error;
     }
 })
+
+  // delete comment
   export const deleteComment = createAsyncThunk("post/deleteComment", async ({token, postId, commentId}) => {
     try {
         const {data : { comments }} = await axios.post(`/api/comments/delete/${postId}/${commentId}`,{},
@@ -130,6 +142,7 @@ export const addCommentOnPost = createAsyncThunk(
     }
 })
 
+// like post
 export const fetchLikePost = createAsyncThunk("post/fetchLikePost", async ({token, postId}) => {
   try {
       const response = await  axios.post(`/api/posts/like/${postId}`,
@@ -146,6 +159,8 @@ export const fetchLikePost = createAsyncThunk("post/fetchLikePost", async ({toke
       console.log(error);
   }
 });
+
+// dislike post
 export const fetchDisLikePost = createAsyncThunk("post/fetchDisLikePost", async ({token, postId}) => {
   try {
       const response = await  axios.post(`/api/posts/dislike/${postId}`,
@@ -163,6 +178,7 @@ export const fetchDisLikePost = createAsyncThunk("post/fetchDisLikePost", async 
   }
 });
 
+// add bookmark
 export const addBookmark = createAsyncThunk("post/addBookmark", async ({token, postId}) => {
   try {
       const response = await axios.post(`/api/users/bookmark/${postId}`,
@@ -181,6 +197,8 @@ export const addBookmark = createAsyncThunk("post/addBookmark", async ({token, p
 
   }
 })
+
+// remove bookmarked
 export const removeBookmark = createAsyncThunk("post/removeBookmark", async ({token, postId}) => {
   try {
       const response = await axios.post(`/api/users/remove-bookmark/${postId}`,

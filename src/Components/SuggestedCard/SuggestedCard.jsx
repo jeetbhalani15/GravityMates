@@ -14,15 +14,19 @@ function SuggestedCard({ users }) {
   const dispatch = useDispatch();
   const userId = users._id;
 
-  const authUser = allUsers.users.find((item) => item.username === user.username);
+  const authUser = allUsers.users.find(
+    (item) => item.username === user.username
+  );
   const isFollowed = authUser?.following.find(
     (item) => item.username === users.username
   );
-
+   
+  // follow
   const followUserHandler = () => {
     dispatch(fetchFollowUser({ token, userId }));
   };
-
+  
+  // unfollow
   const unFollowHandler = () => {
     dispatch(fetchUnFollowUser({ token, userId }));
   };

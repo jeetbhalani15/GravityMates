@@ -12,7 +12,7 @@ const initialState = {
 }
 
 
-
+// login
 export const fetchLoginUserData = createAsyncThunk('user/fetchLoginUserData', async (userData) => {
     console.log(userData)
     const response = await axios.post("/api/auth/login", userData)
@@ -28,6 +28,7 @@ export const fetchLoginUserData = createAsyncThunk('user/fetchLoginUserData', as
 
 })
 
+// signup
 export const fetchSignupUserData = createAsyncThunk('user/fetchSignupUserData', async (userData) => {
     try {
         const response = await axios.post("/api/auth/signup", userData)
@@ -54,6 +55,7 @@ export const fetchUserData = createAsyncThunk('user/fetchAllUsersData', async (u
 
 })
 
+// get all users
 export const fetchAllUsersData = createAsyncThunk('user/fetchUsersData', async ()=>{
    try {
        const res = await axios.get("/api/users")
@@ -66,6 +68,7 @@ export const fetchAllUsersData = createAsyncThunk('user/fetchUsersData', async (
 
 })
 
+// edit user
 export const editUser = createAsyncThunk(
     'user/editUser', 
     async ({userData, token})=>{
@@ -84,6 +87,7 @@ export const editUser = createAsyncThunk(
     }
 });
 
+// follow
 export const fetchFollowUser = createAsyncThunk("user/fetchFollowUser", async ({token, userId}) => {
     try {
         console.log("hiii")
@@ -103,6 +107,7 @@ export const fetchFollowUser = createAsyncThunk("user/fetchFollowUser", async ({
     }
 })
 
+// unfollow
 export const fetchUnFollowUser = createAsyncThunk("user/fetchUnFollowUser", async ({token, userId}) => {
     try {
         console.log("oyee")
@@ -133,6 +138,7 @@ const authSlice = createSlice({
             localStorage.removeItem("user");
             state.token = "",
             state.user = ""
+            toast.success("Logged out Successfully")
         },
     },
 

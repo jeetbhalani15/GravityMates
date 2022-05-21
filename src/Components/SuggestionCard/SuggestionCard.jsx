@@ -20,23 +20,24 @@ function SuggestionCard() {
   const authUser = useSelector((store) => store.user);
   const { allUsers } = useAuth();
   console.log(allUsers);
-  const [checked , setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllUsersData());
     dispatch(getPost());
   }, []);
-
+  
+  // logout
   const logoutHandler = () => {
     dispatch(logoutUser());
     navigate("/");
   };
-  console.log(user.username);
 
   return (
     <div className=" hidden xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl dark:bg-[#282828] dark:text-white ">
       <div className="lg:flex lg:items-center lg:justify-end lg:gap-2 lg:p-4 hover:cursor-pointer">
 
+        {/* Dark Mode Toggle */}
         {/* <div className="flex justify-end items-center space-x-2 mx-auto relative">
           <span className="text-xs font-extralight">Light </span>
           <div>

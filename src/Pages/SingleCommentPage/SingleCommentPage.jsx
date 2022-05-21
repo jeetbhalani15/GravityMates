@@ -24,42 +24,46 @@ const SingleCommentPage = () => {
   const { token } = useAuth();
   const findPost = posts.find((post) => post.id === postsId);
   const postId = findPost?._id;
-  const [commentData, setCommentData] = useState({text:""});
+  const [commentData, setCommentData] = useState({ text: "" });
   const [recentComment, setRecentComent] = useState("");
   const [showModal, setShowModal] = useState(false);
   const authUser = useSelector((store) => store.user);
 
+  // add comment
   const addCommentsHandler = (e) => {
-      e.preventDefault();
+    e.preventDefault();
     dispatch(addCommentOnPost({ postId, commentData, token }));
-    setCommentData({text:""});
+    setCommentData({ text: "" });
+  };
+
+  // edit commnet
+  const editHadnler = (comment, commentsId) => {
+    setShowModal(true);
+    setRecentComent({ text: comment, commentId: commentsId });
+  };
+  
+  // delete commnet
+  const deleteCommentHandler = (commentId) => {
+    dispatch(deleteComment({ token, postId, commentId }));
   };
 
   useEffect(() => {
     dispatch(fetchAllUsersData);
     dispatch(getPost());
   }, []);
-
-  const editHadnler = (comment, commentsId) => {
-    setShowModal(true);
-    setRecentComent({text : comment, commentId : commentsId});
-  }
-
-   const deleteCommentHandler = (commentId) => {
-    dispatch(deleteComment({token, postId, commentId}));
-   }
   return (
     <>
       {" "}
       <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
-        {
-            showModal
-            &&
-            <EditCommentModal setShowModal={setShowModal}  recentComment={recentComment} postId={findPost?._id}  />
-        }
-
+        {showModal && (
+          <EditCommentModal
+            setShowModal={setShowModal}
+            recentComment={recentComment}
+            postId={findPost?._id}
+          />
+        )}
 
         {/* BODY_SECTION POST CARD  */}
         <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab] dark:text-white">
@@ -71,31 +75,41 @@ const SingleCommentPage = () => {
                   <Card key={items._id} postData={items} />
                 )
             )}
-           <div className="flex flex-col items-start ml-20 mt-6">
-               <form onSubmit={(e) => addCommentsHandler(e)}>
-            <div className=" p-2 flex items-center gap-2 w-[28rem] border-b-2 border-[#8080806e] ">
-              <img className="w-8 rounded-full" src={authUser.user?.img} alt="logo" />
-              <input
-                className=" border-b-slate-400 outline-none  bg-transparent"
-                type="text"
-                placeholder="Comment as yodha. . ."
-                onChange={(e) =>
-                  setCommentData((pre) => ({ ...pre, text: e.target.value }))
-                }
-                required
-              />
-              <button
-                className=" lg:ml-[9.2rem] lg:py-0.5 px-4 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]"
-              >
-                Post
-              </button>
-            </div>
-            </form>
-             <div className="flex flex-col items-start">
-            {findPost?.comments?.map((comment) => (
-              <CommentCard commentData={comment} setShowModal={setShowModal} editHadnler={editHadnler} deleteCommentHandler={deleteCommentHandler}/>
-            ))}
-            </div>
+            <div className="flex flex-col items-start ml-20 mt-6">
+              <form onSubmit={(e) => addCommentsHandler(e)}>
+                <div className=" p-2 flex items-center gap-2 w-[28rem] border-b-2 border-[#8080806e] ">
+                  <img
+                    className="w-8 rounded-full"
+                    src={authUser.user?.img}
+                    alt="logo"
+                  />
+                  <input
+                    className=" border-b-slate-400 outline-none  bg-transparent"
+                    type="text"
+                    placeholder="Comment as yodha. . ."
+                    onChange={(e) =>
+                      setCommentData((pre) => ({
+                        ...pre,
+                        text: e.target.value,
+                      }))
+                    }
+                    required
+                  />
+                  <button className=" lg:ml-[9.2rem] lg:py-0.5 px-4 lg:rounded-md lg:bg-slate-400 dark:bg-[#8688885c]">
+                    Post
+                  </button>
+                </div>
+              </form>
+              <div className="flex flex-col items-start">
+                {findPost?.comments?.map((comment) => (
+                  <CommentCard
+                    commentData={comment}
+                    setShowModal={setShowModal}
+                    editHadnler={editHadnler}
+                    deleteCommentHandler={deleteCommentHandler}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
