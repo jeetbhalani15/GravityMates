@@ -71,12 +71,12 @@ const removeFromBookmark = () => {
 
   return (
     <div className=" flex items-center justify-center max-w-[39rem] hover:cursor-pointer">
-      <div className="justify-center p-0.5 max-w-xl border-zinc-400 rounded-[8px]  border-2 dark:text-[#b1b1b1] ">
+      <div className="justify-center p-[0.6rem] max-w-xl border-zinc-400 rounded-[8px]  border-2 dark:text-[#b1b1b1] ">
         <div className=" relative flex items-center justify-between rounded-lg p-2 ">
           <div className="  w-12 flex items-center gap-2 p-1">
-            <img className="rounded-full" src={logo} alt="logo" />
+            <img className=" w-9 h-8 rounded-full" src={postData?.img} alt="logo" />
             <div className="flex flex-col">
-              yodha
+              {postData?.firstName}
               <small className="w-44">{`${postData?.username} . May 16`}</small>
             </div>
           </div>
@@ -84,17 +84,17 @@ const removeFromBookmark = () => {
         </div>
 
         {showMenu && (
-          <div className=" absolute right-[31%] p-2 border bg-slate-300 w-fit">
+          <div className=" absolute right-[31%] p-2 dark:bg-[#000000ab]  w-fit">
             {user?.username === postData?.username ? (
               <>
                 <div className="flex " onClick={() => setShowEditModal(true)}>
-                  <span className="px-1 py-1 flex items-center gap-1">
+                  <span className="px-1 py-1 flex items-center gap-1  dark:bg-[#8688885c] dark:text-white">
                     <MdDeleteOutline className="" color="grey" size={20} />
                     edit
                   </span>
                 </div>
                 <div className="flex " onClick={() => deletePostHandler()}>
-                  <span className="px-1 py-1 flex items-center gap-1">
+                  <span className="px-1 py-1 flex items-center gap-1 dark:bg-[#8688885c] dark:text-white">
                     <MdDeleteOutline className="" color="grey" size={20} />
                     delete
                   </span>
@@ -102,7 +102,7 @@ const removeFromBookmark = () => {
               </>
             ) : (
               <div className="flex ">
-                <span className="px-1 py-1 flex items-center gap-1">
+                <span className="px-1 py-1 flex items-center gap-1 dark:bg-[#8688885c] dark:text-white">
                   <MdDeleteOutline className="" color="grey" size={20} />
                   unfollow
                 </span>
@@ -164,7 +164,7 @@ const removeFromBookmark = () => {
                 <>
                 {
                     postData?.likes?.likedBy.map(liked => (
-                        <p className=' mt-[-1.3rem] p-4 font-bold text-sm text-grey-300'><span className='font-bold text-black dark:text-white'>liked by </span> <Link to={`/profile/${liked.username}`}><span className=" text-sm">{liked.username}</span></Link></p>
+                        <p key={liked._id} className=' mt-[-1.3rem] p-4 font-bold text-sm text-grey-300 '><span className='font-bold text-black dark:text-white'>liked by </span> <Link to={`/profile/${liked.username}`}><span className=" text-sm">{liked.username}</span></Link></p>
                     ))
                 }
                 </>
@@ -172,6 +172,8 @@ const removeFromBookmark = () => {
                 <p className='mt-[-1.3rem] p-4 font-bold text-sm pl-3 text-gray-600 dark:text-[#b1b1b1]'>Be the first to like</p>
 
             }
+             <p className='text-sm pl-3 mt-[-1rem] text-gray-300 p-[0.8rem]'><span className='font-bold text-white'>{postData?.username}</span> {postData?.caption}</p>
+             <small className='text-gray-400 pl-3'>{postData?.createdAt}</small>
             
 
 

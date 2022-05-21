@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 1
 const initialState = {
     token :  JSON.parse(localStorage.getItem('user'))?.token || "",
@@ -18,10 +19,11 @@ export const fetchLoginUserData = createAsyncThunk('user/fetchLoginUserData', as
     console.log(response.data.encodedToken)
     try {
         if(response.status === 200){
+            toast.success('Login Successfully!');
             return response.data;
         }
     } catch (error){
-        console.log(error);
+        toast.error('Something went wrong!');
     }
 
 })
@@ -29,10 +31,12 @@ export const fetchLoginUserData = createAsyncThunk('user/fetchLoginUserData', as
 export const fetchSignupUserData = createAsyncThunk('user/fetchSignupUserData', async (userData) => {
     try {
         const response = await axios.post("/api/auth/signup", userData)
-        if(response.status === 201){ 
+        if(response.status === 201){
+            toast.success('Signup Successfully!'); 
             return response.data;
         }
     } catch (error){
+        toast.error('Something went wrong!');
         return error;
     }
 
@@ -72,6 +76,7 @@ export const editUser = createAsyncThunk(
             headers: {
               authorization: token,
             }});
+            toast.success('Profile Updated!');
         return res.data
     } catch (error) {
         console.log(error)

@@ -43,13 +43,14 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute top-0">
       <form onSubmit={(e)=>updateUserDataHandler(e)}>
     <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96 dark:bg-[#1a1919] dark:text-white">
-     <h1 className=" text-xl text-sky-900 font-bold mt-2 ">Edit profile</h1>
+     <h1 className=" text-xl text-[#019db1] font-bold mt-2 ">Edit profile</h1>
      <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShow(false)} size={25}/></span>
      <div className='flex flex-col justify-center items-center gap-6'>
      <div className='w-20 lg:w-18 '>
-       <label>
-       <img className=' w-20 h-20 rounded-full' src={userData.img} alt="logo"/>
-       <input  onChange={(e) => imageUploadhandler(e)} accept="image/*" type="file" />
+       <label className='flex' htmlFor='image'>
+       <img className=' relative w-20 h-20 rounded-full' src={userData.img} alt="logo"/>
+        <span className='absolute top-36 right-40'><MdOutlineAddAPhoto/></span>
+       <input className=' invisible m-0 p-0 '  onChange={(e) => imageUploadhandler(e)} id="image" accept="image/*" type="file" />
        </label>
              
           </div>
@@ -72,7 +73,7 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
      </div>
      
      <div className="flex gap-2">
-       <button className="p-1 flex items-center gap-2 rounded-md  bg-slate-400 dark:bg-[#8688885c]"><MdPostAdd/>update</button>
+       <button className=" flex items-center gap-2 rounded-md p-2 bg-slate-400 dark:bg-[#8688885c]"><MdPostAdd/>update</button>
      </div>
    </div>
      </form>

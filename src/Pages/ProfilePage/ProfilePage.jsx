@@ -51,7 +51,7 @@ function ProfilePage() {
     (user) => user.username === username
   );
   const postsCount = posts.filter(
-    (item) => item.username === findUser.username
+    (item) => item.username === findUser?.username
   );
 
   if (findUser?.username === userData.user?.username) {
@@ -78,7 +78,7 @@ function ProfilePage() {
   return (
     <>
       {" "}
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
+      <div className="relative flex mt-8 justify-center bg-[#edf7ff] lg:mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
         {show && (
@@ -91,12 +91,12 @@ function ProfilePage() {
         {showAddPostModal && <PostModal setShow={setShow} />}
 
         {/* BODY_SECTION POST CARD  */}
-        <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab]">
-          <div className="lg:p-8 mt-[-3rem] dark:text-white">
+        <div className="mt-20 lg:mt-8 w-full h-screen lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab]">
+          <div className="lg:p-8 lg:mt-[-3rem] dark:text-white">
             <div className="flex gap-3 lg:gap-6 items-center justify-center mt-4">
               <div className="w-20 lg:w-28 ">
                 <img
-                  className="block mx-auto bg-center bg-no-repeat bg-cover w-24 h-24 rounded-full border  shadow-lg"
+                  className="block mx-auto bg-center bg-no-repeat bg-cover lg:w-24 lg:h-24 rounded-full shadow-lg"
                   src={currentUser?.img}
                   alt="logo"
                 />

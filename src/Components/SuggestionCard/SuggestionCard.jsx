@@ -33,14 +33,11 @@ function SuggestionCard() {
   };
   console.log(user.username);
 
-  const toggleDarkMode = function () {
-    checked ? html.classList.add("dark") : html.classList.add("light");
-  };
   return (
     <div className=" hidden xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl dark:bg-[#282828] dark:text-white ">
       <div className="lg:flex lg:items-center lg:justify-end lg:gap-2 lg:p-4 hover:cursor-pointer">
 
-        <div className="flex justify-end items-center space-x-2 mx-auto relative">
+        {/* <div className="flex justify-end items-center space-x-2 mx-auto relative">
           <span className="text-xs font-extralight">Light </span>
           <div>
             <input onChange={()=>setChecked(true)} type="checkbox" name="" id="checkbox" className="hidden" />
@@ -51,7 +48,7 @@ function SuggestionCard() {
             </label>
           </div>
           <span className="text-xs font-semibold">Dark</span>
-        </div>
+        </div> */}
 
         <div className=" hidden xs:hidden lg:block">
           <AiOutlineLogout onClick={logoutHandler} size={20} />
@@ -59,10 +56,10 @@ function SuggestionCard() {
         <div className=" hidden xs:hidden lg:block">
           <FaRegBell size={20} />
         </div>
-        <Link to={"/login"}>
+        <Link to={`/profile/${authUser?.user?.username}`}>
           <img
-            className="lg:rounded-full lg:ml-2 lg:w-10"
-            src={user.user?.img}
+            className="lg:ml-2 lg:w-8 h-8 rounded-full"
+            src={authUser.user?.img}
             alt="logo"
             srcset=""
           />

@@ -27,6 +27,7 @@ const SingleCommentPage = () => {
   const [commentData, setCommentData] = useState({text:""});
   const [recentComment, setRecentComent] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const authUser = useSelector((store) => store.user);
 
   const addCommentsHandler = (e) => {
       e.preventDefault();
@@ -73,7 +74,7 @@ const SingleCommentPage = () => {
            <div className="flex flex-col items-start ml-20 mt-6">
                <form onSubmit={(e) => addCommentsHandler(e)}>
             <div className=" p-2 flex items-center gap-2 w-[28rem] border-b-2 border-[#8080806e] ">
-              <img className="w-8 rounded-full" src={logo} alt="logo" />
+              <img className="w-8 rounded-full" src={authUser.user?.img} alt="logo" />
               <input
                 className=" border-b-slate-400 outline-none  bg-transparent"
                 type="text"
