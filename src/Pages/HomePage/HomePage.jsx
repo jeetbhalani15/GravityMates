@@ -84,7 +84,7 @@ const sortByOldestHandler = () => {
         </div>
 
         {/* //  NAVBAR_SECTION */}
-        <Sidebar />
+        <Sidebar setShow={setShow} />
       </div>
       <SuggestionCard/>
 
