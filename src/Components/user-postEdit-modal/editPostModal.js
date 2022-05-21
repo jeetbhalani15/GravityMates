@@ -46,7 +46,7 @@ const EditPostModal = ({setShowEditModal,postsData,setPostsData,setShowMenu, pos
     <div className=" h-full w-full flex justify-center items-center bg-[#0000006b] z-40 absolute left-0 top-0">
     <form onSubmit={handleNewEditedPostSubmit}>
      <div className=" relative flex gap-6 justify-center flex-col items-center rounded-lg border-slate-800 border-2 w-fit p-4 z-20  bg-slate-300 lg:w-96 dark:bg-[#1a1919]">
-      <h1 className=" text-xl text-sky-900 font-bold mt-2 ">New Post</h1>
+      <h1 className=" text-xl text-[#019db1] font-bold mt-2 ">Edit Post</h1>
       <span className=' absolute top-[10px] right-[14px] hover:bg-slate-400 '><IoIosClose onClick={()=>setShowEditModal(false)} size={25}/></span>
       <div className='flex items-start gap-6'>
       <div className='w-20 lg:w-22 '>

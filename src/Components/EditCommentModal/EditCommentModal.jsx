@@ -26,7 +26,7 @@ const EditCommentModal = ({ setShowModal, recentComment, postId }) => {
         <div className="modal-content py-6 text-left px-6 flex flex-col">
 
             <div className="flex justify-between mb-3 cursor-pointer text-gray-500 hover:text-slate-800">
-                <h1 className="text-lg text-sky-900 ">Edit Comment</h1>
+                <h1 className="text-lg text-[#019db1]">Edit Comment</h1>
                 <VscChromeClose size={20} onClick={() => setShowModal(false)}  className="hover:bg-slate-400" />
             </div>
 
