@@ -29,7 +29,7 @@ function SuggestedCard({ users }) {
   return (
     <div className="lg:flex lg:items-center p-2 lg:justify-evenly hover:bg-[aliceblue] dark:hover:bg-[#5556565c] hover:cursor-pointer">
       <img
-        className="lg:w-12 h-12 rounded-full"
+        className="lg:w-10 h-10 rounded-full"
         src={users.img}
         alt="user-img"
       />

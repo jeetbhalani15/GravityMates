@@ -74,7 +74,7 @@ const removeFromBookmark = () => {
       <div className="justify-center p-[0.6rem] max-w-xl border-zinc-400 rounded-[8px]  border-2 dark:text-[#b1b1b1] ">
         <div className=" relative flex items-center justify-between rounded-lg p-2 ">
           <div className="  w-12 flex items-center gap-2 p-1">
-            <img className=" w-10 h-10 object-contain rounded-full" src={postData?.img} alt="logo" />
+            <img className=" w-9 h-8 rounded-full" src={postData?.img} alt="logo" />
             <div className="flex flex-col">
               {postData?.firstName}
               <small className="w-44">{`${postData?.username} . May 16`}</small>
