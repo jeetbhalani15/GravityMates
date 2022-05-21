@@ -8,6 +8,7 @@ import SingleCommentPage from "./Pages/SingleCommentPage/SingleCommentPage";
 import BookmarkPage from "./Pages/BookmarkPage/BookmarkPage";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import { Toaster } from "react-hot-toast";
+import { Page404 } from "./Pages/Page404/Page404";
 
 
 
@@ -28,6 +29,9 @@ function App() {
       <Route  path="/explore" element={<ExplorePage/>} />
       <Route  path="/login" element={<Login/>} />
       <Route  path="/signup" element={<Signup/>} />
+
+      <Route  path="*" element={<Page404/>} />
+
     </Routes>
     </html>
     </>
