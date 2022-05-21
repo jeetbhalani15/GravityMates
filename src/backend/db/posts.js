@@ -44,9 +44,9 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.",
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium ",
       caption:"",
-      img: "",
+      img: "https://imgur.com/riSUYnb.png",
       likes: {
         likeCount: 0,
         likedBy: [],
@@ -183,9 +183,9 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "“I have always believed, and I still believe, that whatever good or bad fortune may come our way, we can always give it meaning and transform it into something of value.” – Herman Hesse",
+     "",
     caption: "",
-    img:"",
+    img:"https://imgur.com/ryT4jU7.png",
     likes: {
       likeCount: 0,
       likedBy: [],

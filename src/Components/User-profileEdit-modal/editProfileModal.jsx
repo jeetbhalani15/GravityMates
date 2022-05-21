@@ -48,7 +48,8 @@ const EditProfileModal = ({setShow, userImage, setUserImage}) => {
      <div className='flex flex-col justify-center items-center gap-6'>
      <div className='w-20 lg:w-18 '>
        <label className='flex' htmlFor='image'>
-       <img className=' w-20 h-20 rounded-full' src={userData.img} alt="logo"/>
+       <img className=' relative w-20 h-20 rounded-full' src={userData.img} alt="logo"/>
+        <span className='absolute top-36 right-40'><MdOutlineAddAPhoto/></span>
        <input className=' invisible m-0 p-0 '  onChange={(e) => imageUploadhandler(e)} id="image" accept="image/*" type="file" />
        </label>
              

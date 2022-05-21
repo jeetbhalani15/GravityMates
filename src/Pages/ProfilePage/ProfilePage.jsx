@@ -51,7 +51,7 @@ function ProfilePage() {
     (user) => user.username === username
   );
   const postsCount = posts.filter(
-    (item) => item.username === findUser.username
+    (item) => item.username === findUser?.username
   );
 
   if (findUser?.username === userData.user?.username) {
@@ -96,7 +96,7 @@ function ProfilePage() {
             <div className="flex gap-3 lg:gap-6 items-center justify-center mt-4">
               <div className="w-20 lg:w-28 ">
                 <img
-                  className="block mx-auto bg-center bg-no-repeat bg-cover lg:w-24 lg:h-24 rounded-full border  shadow-lg"
+                  className="block mx-auto bg-center bg-no-repeat bg-cover lg:w-24 lg:h-24 rounded-full shadow-lg"
                   src={currentUser?.img}
                   alt="logo"
                 />

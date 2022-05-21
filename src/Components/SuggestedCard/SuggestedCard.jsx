@@ -29,9 +29,9 @@ function SuggestedCard({ users }) {
   return (
     <div className="lg:flex lg:items-center p-2 lg:justify-evenly hover:bg-[aliceblue] dark:hover:bg-[#5556565c] hover:cursor-pointer">
       <img
-        className="lg:rounded-full lg:ml-2 lg:w-12 h-12 "
+        className="lg:w-12 h-12 rounded-full"
         src={users.img}
-        alt="logo"
+        alt="user-img"
       />
       <div className="lg:mr-4">
         <h1 className="lg:text-lg">{users.firstName}</h1>
