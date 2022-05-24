@@ -8,6 +8,7 @@ import PostModal from "../../Components/User-post-modal/PostModal";
 import SuggestionCard from "../../Components/SuggestionCard/SuggestionCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsersData, useAuth } from "../../features/Auth/authSlice";
+import logo from "../../Assets/Images/logo.png"
 import {
   getPost,
   sortByLatest,
@@ -15,9 +16,12 @@ import {
   sortByTrending,
   usePosts,
 } from "../../features/Posts/postSlice";
+import SearchUserBox from "../../Components/SearchUserBox/SearchUserBox";
 
 function HomePage() {
   const [show, setShow] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showUserBox, setShowUSerBox] = useState(false)
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user);
   const { posts } = usePosts();
@@ -71,7 +75,7 @@ function HomePage() {
         <div className=" mt-20 lg:mt-8 w-screen lg:p-8 bg-[#69696933] lg:w-[43.7rem] dark:bg-[#000000ab]">
           <div className="lg:flex lg:items-center justify-around lg:mb-8 lg:sticky">
             <div className=" hidden lg:flex lg:items-center border-2 border-solid w-fit rounded-full bg-gray-200  lg:mt-2">
-              <input className="border-none p-2 w-24 ml-3 outline-none text-xs bg-gray-200 rounded-full  xs:w-60 " />
+              <input onKeyUp={()=>setShowUSerBox(!showUserBox)} onChange={(e)=>setSearchQuery(e.target.value)} className="border-none p-2 w-24 ml-3 outline-none text-xs bg-gray-200 rounded-full  xs:w-60 " />
               <ImSearch className="w-8 mr-2" />
             </div>
             <div className=" hidden lg:flex lg:items-center lg:gap-3 lg:hover:cursor-pointer lg:text-lg lg:text-[#019db1] lg:font-bold">
@@ -85,6 +89,14 @@ function HomePage() {
               </div>
             </div>
           </div>
+
+
+
+          {showUserBox && <div className=" absolute z-10 top-[15%] left-[35%] flex flex-col gap-1 bg-zinc-800 w-fit p-2 overflow-y-auto h-[14rem] ">
+          <SearchUserBox searchQuery={searchQuery}/>
+          </div>}
+
+
 
           <div className="flex justify-center text-white font-bold gap-3">
             <button
