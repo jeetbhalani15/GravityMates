@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import logo from "../../Assets/Images/logo.png"
 import { useAuth } from '../../features/Auth/authSlice'
 
+
+
 const SearchUserBox = ({searchQuery}) => {
  const {allUsers} = useAuth();
  const searchResult = allUsers.users.filter((user)=> user.username.toLowerCase().includes(searchQuery?.toLowerCase().trim()))
-
-
   return (
       
    <div>

@@ -92,7 +92,7 @@ function ProfilePage() {
         {showAddPostModal && <PostModal setShow={setShow} />}
 
         {/* BODY_SECTION POST CARD  */}
-        <div className="mt-20 lg:mt-8 w-full h-screen lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab]">
+        <div className="xl:h-[110vh] mt-20 lg:mt-8 w-full h-screen lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab]">
           <div className="lg:p-8 lg:mt-[-3rem] dark:text-white">
             <div className="flex gap-3 lg:gap-6 items-center justify-center mt-4">
               <div className="w-20 lg:w-28 ">
@@ -155,7 +155,7 @@ function ProfilePage() {
               <p className=" text-center">{currentUser?.bio}</p>
             </div>
           </div>
-          <div className="lg:overflow-y-auto lg:h-[31.5rem]">
+          <div className=" xl:h-[60.8rem] lg:overflow-y-auto lg:h-[31.5rem]">
             {posts?.map(
               (item) =>
                 item?.username === findUser?.username && (
