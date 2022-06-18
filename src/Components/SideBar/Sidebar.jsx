@@ -19,7 +19,7 @@ function Sidebar({ setShow }) {
   }, []);
   return (
     <>
-      <div className=" backdrop-blur-sm bg-gray-800/70 flex items-center justify-around  w-full p-2 fixed bottom-0 bg-white lg:absolute lg:left-44 lg:top-8 lg:mb-12 z-20 lg:flex-col lg:w-60 lg:h-fit lg:items-start lg:p-8 lg:bg-zinc-200  lg:rounded-tl-3xl lg:pb-[25.8rem] dark:bg-[#282828] dark:text-white">
+      <div className=" xl:top-8 xl:left-[23rem] xl:pb-[47.8rem] backdrop-blur-sm bg-gray-800/70 flex items-center justify-around  w-full p-2 fixed bottom-0 bg-white lg:absolute lg:left-44 lg:top-8 lg:mb-12 z-20 lg:flex-col lg:w-60 lg:h-fit lg:items-start lg:p-8 lg:bg-zinc-200  lg:rounded-tl-3xl lg:pb-[25.8rem] dark:bg-[#282828] dark:text-white">
         <Link to={"/home"}>
           <div className=" hidden lg:block text-2xl   text-[#019db1] ml-8 font-extrabold  font-mono">
             Gravity

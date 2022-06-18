@@ -40,6 +40,20 @@ function HomePage() {
         (follower) => follower.username === item.username
       )
   );
+ 
+  const getData =()=>{
+    console.log("fetching data")
+  }
+  const mydebounce =(cb,delay)=>{
+    let timer;
+    return function(...args){
+      if(timer) clearTimeout(timer);
+      timer = setTimeout(()=>{
+        cb()
+      },delay)
+    }
+  }
+  const result = mydebounce(getData,1000)
 
   useEffect(() => {
     dispatch(fetchAllUsersData());
@@ -66,19 +80,19 @@ function HomePage() {
 
   return (
     <>
-      <div className="relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
+      <div className=" xl:h-[104vh] relative flex justify-center bg-[#edf7ff] mt-[-1.5rem] dark:bg-[#000000ab]">
         {/* // HEADER_SECTION */}
         <Header />
         {show && <PostModal setShow={setShow} />}
 
         {/* BODY_SECTION POST CARD  */}
         <div className=" mt-20 lg:mt-8 w-screen lg:p-8 bg-[#69696933] lg:w-[43.7rem] dark:bg-[#000000ab]">
-          <div className="lg:flex lg:items-center justify-around lg:mb-8 lg:sticky">
-            <div className=" hidden lg:flex lg:items-center border-2 border-solid w-fit rounded-full bg-gray-200  lg:mt-2">
+          <div className=" xl:flex xl:gap-12 lg:flex lg:items-center justify-around lg:mb-8 lg:sticky">
+            <div className=" hidden xl:ml-[40rem] lg:flex lg:items-center border-2 border-solid w-fit rounded-full bg-gray-200  lg:mt-2">
               <input onKeyUp={()=>setShowUSerBox(!showUserBox)} onChange={(e)=>setSearchQuery(e.target.value)} className="border-none p-2 w-24 ml-3 outline-none text-xs bg-gray-200 rounded-full  xs:w-60 " />
               <ImSearch className="w-8 mr-2" />
             </div>
-            <div className=" hidden lg:flex lg:items-center lg:gap-3 lg:hover:cursor-pointer lg:text-lg lg:text-[#019db1] lg:font-bold">
+            <div className=" hidden xl:mr-[40rem] lg:flex lg:items-center lg:gap-3 lg:hover:cursor-pointer lg:text-lg lg:text-[#019db1] lg:font-bold">
               {`Hi,${userData.user?.username}`}
               <div>
                 <VscDiffAdded
@@ -98,7 +112,7 @@ function HomePage() {
 
 
 
-          <div className="flex justify-center text-white font-bold gap-3">
+          <div className=" xl:mt-12 flex justify-center text-white font-bold gap-3">
             <button
               onClick={sortByTrandingHandler}
               className={`hover:bg-cyan-500 dark:bg-[#4848487d] border-b-4 ${
@@ -124,7 +138,7 @@ function HomePage() {
               Oldest
             </button>
           </div>
-          <div className=" flex flex-col gap-6 lg:overflow-y-auto mt-8 lg:h-[33.6rem]">
+          <div className=" xl:h-[52.6rem] flex flex-col gap-6 lg:overflow-y-auto mt-8 lg:h-[33.6rem]">
             {posts?.map((items) => (
               <Card key={items._id} postData={items} />
             ))}

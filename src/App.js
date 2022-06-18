@@ -9,6 +9,7 @@ import BookmarkPage from "./Pages/BookmarkPage/BookmarkPage";
 import ExplorePage from "./Pages/ExplorePage/ExplorePage";
 import { Toaster } from "react-hot-toast";
 import { Page404 } from "./Pages/Page404/Page404";
+import { LandingPage } from "./Pages/LandingPage/LandingPage";
 
 
 
@@ -21,7 +22,7 @@ function App() {
     />
     <html className="dark">
     <Routes>
-      <Route exact path="/" element={<Login/>} />
+      <Route exact  path="/" element={<LandingPage/>} />
       <Route  path="/home" element={<HomePage/>} />
       <Route  path="/profile/:username" element={<ProfilePage/>} />
       <Route  path="/comments/:postsId" element={<SingleCommentPage/>} />

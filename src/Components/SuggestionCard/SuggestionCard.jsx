@@ -19,7 +19,6 @@ function SuggestionCard() {
   const { user } = useAuth();
   const authUser = useSelector((store) => store.user);
   const { allUsers } = useAuth();
-  console.log(allUsers);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -34,7 +33,7 @@ function SuggestionCard() {
   };
 
   return (
-    <div className=" hidden xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl dark:bg-[#282828] dark:text-white ">
+    <div className=" hidden xl:right-[18rem] xl:top-2 xs:hdden lg:flex lg:flex-col lg:w-80 lg:p-2 lg:gap-3 lg:absolute lg:top-2 lg:right-24 lg:z-20 lg:bg-zinc-200 lg:rounded-tr-3xl dark:bg-[#282828] dark:text-white ">
       <div className="lg:flex lg:items-center lg:justify-end lg:gap-2 lg:p-4 hover:cursor-pointer">
 
         {/* Dark Mode Toggle */}
@@ -73,9 +72,9 @@ function SuggestionCard() {
         {allUsers.users?.map(
           (item) =>
             item?.username !== authUser.user?.username && (
-              <Link to={`/profile/${item?.username}`}>
+            
                 <SuggestedCard key={item?._id} users={item} />
-              </Link>
+             
             )
         )}
       </div>

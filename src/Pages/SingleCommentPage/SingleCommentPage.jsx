@@ -67,7 +67,7 @@ const SingleCommentPage = () => {
 
         {/* BODY_SECTION POST CARD  */}
         <div className="mt-20 lg:mt-8 w-fit lg:p-8 lg:bg-[#69696933] lg:w-[43.2rem] dark:bg-[#000000ab] dark:text-white">
-          <h1 className="text-2xl font-bold text-[#019db1]">Commnets</h1>
+          <h1 className="text-2xl font-bold text-[#019db1]">Comments</h1>
           <div className="lg:overflow-y-auto lg:h-[38.8rem] lg:mt-8">
             {posts?.map(
               (items) =>

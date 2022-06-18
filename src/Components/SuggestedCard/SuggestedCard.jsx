@@ -31,18 +31,22 @@ function SuggestedCard({ users }) {
     dispatch(fetchUnFollowUser({ token, userId }));
   };
   return (
+     
+    <div>
     <div className="lg:flex lg:items-center p-2 lg:justify-evenly hover:bg-[aliceblue] dark:hover:bg-[#5556565c] hover:cursor-pointer">
       <img
         className="lg:w-10 h-10 rounded-full"
         src={users.img}
         alt="user-img"
       />
+      <Link to={`/profile/${users.username}`}>
       <div className="lg:mr-4">
         <h1 className="lg:text-lg">{users.firstName}</h1>
         <div>
           <small>{users.username}</small>
         </div>
       </div>
+      </Link>
       {isFollowed ? (
         <button
           onClick={unFollowHandler}
@@ -58,6 +62,7 @@ function SuggestedCard({ users }) {
           Follow +
         </button>
       )}
+    </div>
     </div>
   );
 }
